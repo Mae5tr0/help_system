@@ -11,6 +11,10 @@ class AccessToken < ActiveRecord::Base
 
       token.user
     end
+
+    def for(user)
+      AccessToken.where(user_id: user.id, revoked: false).first_or_create!
+    end
   end
 
   def revoke!
@@ -20,6 +24,6 @@ class AccessToken < ActiveRecord::Base
   private
 
   def set_token
-    self.token ||= SecureRandom.urlsafe_base64(48)
+    self.token ||= SecureRandom.urlsafe_base64(32)
   end
 end

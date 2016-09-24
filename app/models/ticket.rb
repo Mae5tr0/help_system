@@ -4,6 +4,7 @@ class Ticket < ActiveRecord::Base
     OPEN = 'open'.freeze
     CLOSED = 'closed'.freeze
   end
+  include WithUid
 
   validates :title, :content, :status, presence: true
 

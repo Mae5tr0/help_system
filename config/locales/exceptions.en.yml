@@ -2,6 +2,8 @@ en:
   exceptions:
     bad_request_error:
       offset_and_limit_should_be_an_integers: offset and limit should be integers
+      invalid_params: Invalid params
     unauthorized_error:
       empty_token: Access token can't be blank
       invalid_token: Invalid access_token
+      invalid_credention: Invalid email or password

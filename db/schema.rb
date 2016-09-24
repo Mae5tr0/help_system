@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924090905) do
+ActiveRecord::Schema.define(version: 20160924135047) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string   "token",      limit: 255,                 null: false
@@ -38,13 +38,15 @@ ActiveRecord::Schema.define(version: 20160924090905) do
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string "uid",      limit: 255, null: false
-    t.string "email",    limit: 255, null: false
-    t.string "password", limit: 255, null: false
-    t.string "role",     limit: 255, null: false
+    t.string   "email",              limit: 255, default: "", null: false
+    t.string   "encrypted_password", limit: 255, default: "", null: false
+    t.string   "uid",                limit: 255,              null: false
+    t.string   "role",               limit: 255,              null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
 end

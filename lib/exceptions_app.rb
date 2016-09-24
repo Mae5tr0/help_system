@@ -13,12 +13,26 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
   end
 
   def body
-    {
-        meta: {
-            error_type: exception.message_id,
-            error_message: exception.message,
-        }
-    }
+
+    puts 'Exception App'
+    puts exception
+    # TODO @refactor
+    if exception.is_a?(ApplicationError)
+      {
+          meta: {
+              error_type: exception.message_id,
+              error_message: exception.message,
+          }
+      }
+    else
+      {
+          meta: {
+              error_type: 'error',
+              error_message: 'message',
+          }
+      }
+    end
+
   end
 
   def error_message

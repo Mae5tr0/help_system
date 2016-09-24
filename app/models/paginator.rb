@@ -33,8 +33,7 @@ Paginator = Struct.new(:resources) do
     if limit.to_s =~ is_integer && offset.to_s =~ is_integer
       return Integer(limit), Integer(offset)
     else
-      # TODO @refactor
-      fail BadRequestError.new('offset_and_limit_should_be_an_integers')
+      fail UnauthorizedError, :offset_and_limit_should_be_an_integers
     end
   end
 end

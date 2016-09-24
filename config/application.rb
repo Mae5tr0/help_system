@@ -13,7 +13,7 @@ module Server
     config.autoload_paths += %W(
       #{config.root}/app/exceptions
       #{config.root}/app/serializers/concerns
-      #{config.root}/app/controllers/concerns
+      #{config.root}/app/controllers/api/concerns
     )
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -32,7 +32,6 @@ module Server
     config.active_record.raise_in_transactional_callbacks = true
 
     config.exceptions_app = ExceptionsApp.new(Rails.public_path)
-
     # config.middleware.delete(ActionDispatch::DebugExceptions)
   end
 end
