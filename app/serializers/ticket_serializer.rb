@@ -1,3 +1,3 @@
-class Ticket < ActiveModel::Serializer
+class TicketSerializer < ActiveModel::Serializer
   include WithSerializedUid
 end

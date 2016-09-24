@@ -9,6 +9,9 @@ gem 'mysql2', '~> 0.3.18'
 # JSON
 gem 'active_model_serializers', '~> 0.10.0'
 
+# Pagination
+gem 'kaminari'
+
 # Architecture
 gem 'dotenv-rails', '2.1.1'
 
@@ -23,7 +26,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # rspec
+  # Rspec
   gem 'rspec'
   gem 'rspec-rails'
 end

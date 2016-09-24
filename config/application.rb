@@ -6,10 +6,14 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require File.expand_path('../../lib/exceptions_app.rb', __FILE__)
+
 module Server
   class Application < Rails::Application
     config.autoload_paths += %W(
-      {config.root}/app/serializers/concerns
+      #{config.root}/app/exceptions
+      #{config.root}/app/serializers/concerns
+      #{config.root}/app/controllers/concerns
     )
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -26,5 +30,9 @@ module Server
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.exceptions_app = ExceptionsApp.new(Rails.public_path)
+
+    # config.middleware.delete(ActionDispatch::DebugExceptions)
   end
 end

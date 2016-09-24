@@ -14,11 +14,15 @@
 ActiveRecord::Schema.define(version: 20160924090905) do
 
   create_table "access_tokens", force: :cascade do |t|
-    t.string  "token",   limit: 255,                 null: false
-    t.boolean "revoked",             default: false, null: false
+    t.string   "token",      limit: 255,                 null: false
+    t.boolean  "revoked",                default: false, null: false
+    t.integer  "user_id",    limit: 4,                   null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_index "access_tokens", ["token"], name: "index_access_tokens_on_token", using: :btree
+  add_index "access_tokens", ["user_id"], name: "index_access_tokens_on_user_id", using: :btree
 
   create_table "tickets", force: :cascade do |t|
     t.string   "uid",        limit: 255,   null: false

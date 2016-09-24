@@ -1,4 +1,4 @@
-class WithSerializedUid < ActiveModel::Serializer
+module WithSerializedUid
   extend ActiveSupport::Concern
 
   included do

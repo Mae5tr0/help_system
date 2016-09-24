@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  # TODO @refactor
   module Status
     OPEN = 'open'.freeze
     CLOSED = 'closed'.freeze

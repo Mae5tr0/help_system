@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authorize_user, only: [:index, :show, :edit]
+
   def index
-    # authorize! :index, :user
-    # @users = User.all
-    #
-    render json: User.all
+    render json: paginate(User.all)
   end
 
   def show
