@@ -1,16 +1,20 @@
 module Api
   module V1
-    class TicketsController < ResourceController
-      def resource_class
-        Ticket
+    class TicketsController < ApplicationController
+      def index
+        respond_with paginate(@tickets)
       end
 
-      def resource
-        @ticket ||= Ticket.find_by_uid(params[:id])
+      def show
+        respond_with @ticket
       end
 
-      def resource_params
-        params.require(:ticket).permit(:title, :content, :status)
+      def create
+        head :no_content
+      end
+
+      def update
+        head :no_content
       end
     end
   end

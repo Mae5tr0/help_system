@@ -3,20 +3,29 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :validatable
 
+  include WithUid
+  has_many :tickets
+  has_many :access_tokens
+
   # TODO @refactor
   module Role
     ADMIN = 'admin'.freeze
     SUPPORT_MANAGER = 'support'.freeze
     CUSTOMER = 'customer'.freeze
   end
-  include WithUid
-  has_many :tickets
 
-  class << self
-    def for(user)
-      return all if user.role == User::Role::ADMIN
-      return where.not(role: User::Role::ADMIN) if user.role == User::Role::SUPPORT_MANAGER
-      none
-    end
+  def role?(check_role)
+    role == check_role
   end
+  # def admin?
+  #   role == Role::ADMIN
+  # end
+  #
+  # def manager?
+  #   role == Role::SUPPORT_MANAGER
+  # end
+  #
+  # def customer?
+  #   role == Role::CUSTOMER
+  # end
 end
