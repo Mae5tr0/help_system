@@ -1,32 +1,15 @@
 module Api
   module V1
-    class UsersController < Api::BaseController
-      # before_action :authorize_user, only: [:index, :show, :edit]
-
-      def index
-        # render json: paginate(User.all)
+    class UsersController < ResourceController
+      def resource_class
+        User
       end
 
-      def show
-
+      def resource
+        @user ||= User.find_by_uid(params[:id])
       end
 
-      def edit
-
-      end
-
-      def create
-
-      end
-
-
-      def authorize
-
-      end
-
-      private
-
-      def user_params
+      def resource_params
         params.require(:user).permit(:email, :password, :role)
       end
     end

@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
   end
   include WithUid
   has_many :tickets
+
+  class << self
+    def for(user)
+      return all if user.role == User::Role::ADMIN
+      return where.not(role: User::Role::ADMIN) if user.role == User::Role::SUPPORT_MANAGER
+      none
+    end
+  end
 end
