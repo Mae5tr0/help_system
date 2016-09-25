@@ -16,7 +16,7 @@ module Server
     config.autoload_paths += %W(
       #{config.root}/app/exceptions
       #{config.root}/app/serializers/concerns
-      #{config.root}/app/controllers/concerns
+      #{config.root}/app/controllers/api/concerns
     )
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -16,6 +16,12 @@ module Api
       def update
         head :no_content
       end
+
+      def destroy
+        @ticket.destroy
+
+        head :no_content
+      end
     end
   end
 end

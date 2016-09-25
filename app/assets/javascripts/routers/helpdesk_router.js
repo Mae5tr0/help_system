@@ -1,21 +1,63 @@
-Helpdesk.Router= Backbone.Router.extend({
+Helpdesk.Router = Backbone.Router.extend({
   initialize: function () {
-    console.log("initialize routes");
+    console.log("initialize router");
   },
 
   routes: {
-    'tickets': 'tickets',
-    'users': 'users'
+    '.*': 'index',
+
+    'tickets': 'indexTickets',
+    'tickets/:id': 'showTicket',
+    'tickets/:id/edit': 'editTicket',
+    'tickets/new': 'newTicket',
+
+    'users': 'indexUsers',
+    'users/:id': 'showUser',
+    'users/:id/edit': 'editUser',
+
+    'sign_up': 'newUser',
+    'sign_in': 'sign_in'
   },
 
-  tickets: function () {
-    //@view = new Blog.Views.Posts.IndexView(collection: @posts)
-    //$("#posts").html(@view.render().el)
-    console.log("tickets");
-    //self.view = new Helpdesk.Views.UsersIndex({collection: self.tickets});
+  index: function () {
+    console.log("index");
+    this.navigate("tickets", {trigger: true});
   },
 
-  users: function () {
-    console.log("users");
+  indexTickets: function () {
+    console.log("indexTickets");
+    var view = new Helpdesk.Views.TicketsIndex;
+    view.render();
+  },
+
+  showTicket: function (ticketId) {
+    console.log("showTicket");
+    var view = new Helpdesk.Views.TicketShow(ticketId);
+    view.render();
+  },
+
+  editTicket: function () {
+    console.log("editTicket");
+  },
+
+  newTicket: function () {
+    console.log("newTicket");
+  },
+
+
+  indexUsers: function () {
+    console.log("indexTickets");
+  },
+
+  showUser: function () {
+    console.log("showTickets");
+  },
+
+  editUser: function () {
+    console.log("editTicket");
+  },
+
+  newUser: function () {
+    console.log("newUser");
   }
 });

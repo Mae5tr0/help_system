@@ -1,5 +1,3 @@
-Helpdesk.Views.TicketsEdit = Backbone.View.extend({
-
-  template: JST['tickets/show']
-
+Helpdesk.Views.TicketEdit = Backbone.View.extend({
+  template: JST['tickets/edit']
 });

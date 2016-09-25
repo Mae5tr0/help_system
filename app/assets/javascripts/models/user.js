@@ -1,3 +1,9 @@
 Helpdesk.Models.User = Backbone.Model.extend({
-  paramRoot: 'ticket'
+  urlRoot: '/api/v1/users',
+  parse: function (response) {
+    if (response.user === undefined) {
+      return response;
+    }
+    response.user;
+  }
 });
