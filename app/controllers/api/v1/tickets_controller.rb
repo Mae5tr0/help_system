@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TicketsController < ApplicationController
+    class TicketsController < ApiController
       def index
         respond_with paginate(@tickets)
       end

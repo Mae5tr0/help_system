@@ -1,5 +1,4 @@
-Server.Collections.Users = Backbone.Collection.extend({
-
-  model: Server.Models.User
-
+Helpdesk.Collections.Users = Backbone.Collection.extend({
+  model: Helpdesk.Models.User,
+  url: '/api/v1/tickets'
 });

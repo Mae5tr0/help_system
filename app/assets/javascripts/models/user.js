@@ -1,3 +1,3 @@
-Server.Models.User = Backbone.Model.extend({
-
+Helpdesk.Models.User = Backbone.Model.extend({
+  paramRoot: 'ticket'
 });

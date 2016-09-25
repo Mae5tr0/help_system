@@ -4,9 +4,9 @@ window.Helpdesk = {
   Views: {},
   Routers: {},
   initialize: function() {
-    //console.log("start routes");
-
-    //alert('Hello from Backbone!');
+    console.log("start app");
+    window.router = new Helpdesk.Router();
+    Backbone.history.start({pushState: true});
   }
 };
 

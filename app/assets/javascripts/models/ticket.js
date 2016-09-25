@@ -1,3 +1,3 @@
-Server.Models.Ticket = Backbone.Model.extend({
-
+Helpdesk.Models.Ticket = Backbone.Model.extend({
+  paramRoot: 'ticket'
 });
