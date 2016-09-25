@@ -6,7 +6,7 @@ class Ability
       can :manage, :all
     elsif current_user.role?(User::Role::SUPPORT_MANAGER)
       can :manage, Ticket
-      
+
       can :index, User, ['role != ?', User::Role::ADMIN]
       can :manage, User do |user|
         !user.admin?

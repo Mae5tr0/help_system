@@ -26,3 +26,13 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+Run rspec
+ rspec
+
+Run js test
+ rake spec:javascript
+
+For js test you require istalled phantomjs
+Install it throught brew
+ brew install phantomjs

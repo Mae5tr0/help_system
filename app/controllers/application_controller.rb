@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   # rescue_from CanCan::AccessDenied do
   #   raise UnauthorizedError, :insufficient_privileges
   # end
+
+  def index
+    render
+  end
 end

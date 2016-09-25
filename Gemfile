@@ -10,8 +10,28 @@ gem 'mysql2', '~> 0.3.18'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'responders'
 
+# Stylesheets
+gem 'bootstrap-sass'
+gem 'sass-rails', '~> 5.0'
+
+# JS
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+# Backbone framework
+gem 'backbone-on-rails'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .coffee assets and views
+# gem 'coffee-rails', '~> 4.2'
+
 # Pagination
-gem 'kaminari'
+# gem 'kaminari'
+
+# CORS
+# gem 'rack-cors'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# gem 'turbolinks'
 
 # Architecture
 gem 'dotenv-rails', '2.1.1'
@@ -27,9 +47,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
+
   # Spec
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+
+  gem 'jasmine'
 end
 
 group :development do
