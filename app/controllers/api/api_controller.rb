@@ -2,12 +2,10 @@ require 'application_responder'
 
 module Api
   class ApiController < ApplicationController
-    include Authentification
-    include WithMeta
-    include WithPagination
-
     self.responder = ApplicationResponder
     respond_to :json
+
+    include Authentification
 
     check_authorization
     load_resource find_by: :uid

@@ -12,11 +12,19 @@ class User < ActiveRecord::Base
     ADMIN = 'admin'.freeze
     SUPPORT_MANAGER = 'support'.freeze
     CUSTOMER = 'customer'.freeze
+    GUEST = 'guest'.freeze
   end
 
   def role?(check_role)
     role == check_role
   end
+
+  class << self
+    def guest
+      new(role: Role::GUEST)
+    end
+  end
+
   # def admin?
   #   role == Role::ADMIN
   # end

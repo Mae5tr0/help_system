@@ -1,5 +1,5 @@
-Helpdesk.Views.UsersShow = Backbone.View.extend({
+Helpdesk.Views.UserShow = Backbone.View.extend({
 
-  template: JST['users/index']
+  template: JST['users/show']
 
 });

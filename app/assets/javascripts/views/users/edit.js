@@ -1,4 +1,4 @@
-Helpdesk.Views.UsersEdit = Backbone.View.extend({
+Helpdesk.Views.UserEdit = Backbone.View.extend({
 
   template: JST['users/index']
 

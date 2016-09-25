@@ -35,6 +35,6 @@ module Server
     config.active_record.raise_in_transactional_callbacks = true
 
     config.exceptions_app = ExceptionsApp.new(Rails.public_path)
-    # config.middleware.delete(ActionDispatch::DebugExceptions)
+    config.middleware.delete(ActionDispatch::DebugExceptions)
   end
 end

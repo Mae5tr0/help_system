@@ -25,5 +25,5 @@ Helpdesk.Views.TicketShow = Backbone.View.extend({
     console.log('editTicket');
     el.preventDefault();
     Helpdesk.router.navigate('/tickets/' + this.model.id + '/edit', true);
-  },
+  }
 });

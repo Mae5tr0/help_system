@@ -2,7 +2,7 @@ module Api
   module V1
     class UsersController < ApiController
       def index
-        respond_with paginate(@users)
+        respond_with @users
       end
 
       def show

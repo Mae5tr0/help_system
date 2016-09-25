@@ -16,7 +16,6 @@ Helpdesk.Views.Ticket = Backbone.View.extend({
   editTicket: function (el) {
     console.log('editTicket');
     el.preventDefault();
-    // TODO @refactor
     Helpdesk.router.navigate('/tickets/' + this.model.id + '/edit', true);
   },
   showTicket: function (el) {

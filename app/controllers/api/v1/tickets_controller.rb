@@ -2,7 +2,7 @@ module Api
   module V1
     class TicketsController < ApiController
       def index
-        respond_with paginate(@tickets)
+        respond_with @tickets
       end
 
       def show

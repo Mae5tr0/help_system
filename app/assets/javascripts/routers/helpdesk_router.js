@@ -1,6 +1,13 @@
 Helpdesk.Router = Backbone.Router.extend({
   initialize: function () {
     console.log("initialize router");
+
+    Helpdesk.on('login', function () {
+      Helpdesk.router.navigate('tickets', {trigger: true});
+    });
+    Helpdesk.on('logout', function () {
+      Helpdesk.router.navigate('login', {trigger: true});
+    });
   },
 
   routes: {
@@ -15,8 +22,7 @@ Helpdesk.Router = Backbone.Router.extend({
     'users/:id': 'showUser',
     'users/:id/edit': 'editUser',
 
-    'sign_up': 'newUser',
-    'sign_in': 'sign_in'
+    'login': 'login'
   },
 
   index: function () {
@@ -36,28 +42,39 @@ Helpdesk.Router = Backbone.Router.extend({
     view.render();
   },
 
-  editTicket: function () {
+  editTicket: function (tickedId) {
     console.log("editTicket");
+    var view = new Helpdesk.Views.TicketEdit(ticketId);
+    view.render();
   },
 
   newTicket: function () {
     console.log("newTicket");
+    var view = new Helpdesk.Views.TicketNew();
+    view.render();
   },
-
 
   indexUsers: function () {
     console.log("indexTickets");
+    var view = new Helpdesk.Views.TicketShow();
+    view.render();
   },
 
-  showUser: function () {
+  showUser: function (userId) {
     console.log("showTickets");
+    var view = new Helpdesk.Views.UserShow(userId);
+    view.render();
   },
 
-  editUser: function () {
+  editUser: function (userId) {
     console.log("editTicket");
+    var view = new Helpdesk.Views.UserEdit(userId);
+    view.render();
   },
 
-  newUser: function () {
-    console.log("newUser");
+  login: function () {
+    console.log("login");
+    var view = new Helpdesk.Views.Login();
+    view.render();
   }
 });

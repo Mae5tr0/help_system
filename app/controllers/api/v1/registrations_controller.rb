@@ -2,7 +2,7 @@ module Api
   module V1
     class RegistrationsController < Devise::RegistrationsController
       def create
-        user = User.new(params.require(:user).permit(:email, :password))
+        user = User.new(params.permit(:email, :password))
         user.role = User::Role::CUSTOMER
 
         # TODO @refactor

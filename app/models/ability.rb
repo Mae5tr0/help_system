@@ -1,7 +1,9 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(current_user)
+  def initialize(user)
+    current_user = user || User.guest
+
     if current_user.role?(User::Role::ADMIN)
       can :manage, :all
     elsif current_user.role?(User::Role::SUPPORT_MANAGER)
