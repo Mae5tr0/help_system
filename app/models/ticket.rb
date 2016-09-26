@@ -17,8 +17,8 @@ class Ticket < ActiveRecord::Base
   end
 
   class << self
-    def search(titleString)
-      where('title like ?', titleString)
+    def search(condition)
+      where('title like ?', "%#{condition}%")
     end
   end
 end

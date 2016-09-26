@@ -12,7 +12,6 @@ module Api
     load_resource find_by: :uid
     load_and_authorize_resource only: [:index, :show, :create, :update, :destroy]
 
-    # TODO @refactor use in the same way error handling
     rescue_from CanCan::AccessDenied do
       raise UnauthorizedError, :insufficient_privileges
     end

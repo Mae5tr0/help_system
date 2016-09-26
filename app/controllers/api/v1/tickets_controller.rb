@@ -35,8 +35,8 @@ module Api
 
       def search
         authorize! :index, Ticket
-        @tickest = Ticket.search(params[:query])
 
+        @tickets = Ticket.search(params[:query]).preload(:user)
         respond_with @tickets
       end
     end
