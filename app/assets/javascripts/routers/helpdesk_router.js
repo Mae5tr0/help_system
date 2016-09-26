@@ -7,9 +7,9 @@ Helpdesk.Router = Backbone.Router.extend({
     '.*': 'index',
 
     'tickets': 'indexTickets',
+    'tickets/new': 'newTicket',
     'tickets/:id': 'showTicket',
     'tickets/:id/edit': 'editTicket',
-    'tickets/new': 'newTicket',
 
     'users': 'indexUsers',
     'users/:id': 'showUser',
@@ -26,45 +26,36 @@ Helpdesk.Router = Backbone.Router.extend({
   indexTickets: function () {
     console.log("indexTickets");
     this.show(new Helpdesk.Views.TicketsIndex);
-    //var view = new Helpdesk.Views.Main(new Helpdesk.Views.TicketsIndex);
-    //var view = new Helpdesk.Views.TicketsIndex;
-    //view.render();
   },
 
   showTicket: function (ticketId) {
     console.log("showTicket");
-    var view = new Helpdesk.Views.TicketShow(ticketId);
-    view.render();
+    this.show(new Helpdesk.Views.TicketShow(ticketId));
   },
 
-  editTicket: function (tickedId) {
+  editTicket: function (ticketId) {
     console.log("editTicket");
-    var view = new Helpdesk.Views.TicketEdit(ticketId);
-    view.render();
+    this.show(new Helpdesk.Views.TicketEdit(ticketId));
   },
 
   newTicket: function () {
     console.log("newTicket");
-    var view = new Helpdesk.Views.TicketNew();
-    view.render();
+    this.show(new Helpdesk.Views.TicketNew());
   },
 
   indexUsers: function () {
-    console.log("indexTickets");
-    var view = new Helpdesk.Views.TicketShow();
-    view.render();
+    console.log("indexUsers");
+    this.show(new Helpdesk.Views.UsersIndex());
   },
 
   showUser: function (userId) {
-    console.log("showTickets");
-    var view = new Helpdesk.Views.UserShow(userId);
-    view.render();
+    console.log("showUser");
+    this.show(new Helpdesk.Views.UserShow(userId));
   },
 
   editUser: function (userId) {
-    console.log("editTicket");
-    var view = new Helpdesk.Views.UserEdit(userId);
-    view.render();
+    console.log("editUser");
+    this.show(new Helpdesk.Views.UserEdit(userId));
   },
 
   login: function () {

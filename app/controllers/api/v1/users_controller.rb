@@ -8,6 +8,13 @@ module Api
       def show
         respond_with @user
       end
+
+      def update
+        @user.update(params.permit(:role))
+        @user.save!
+
+        head :no_content
+      end
     end
   end
 end

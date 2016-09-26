@@ -6,11 +6,11 @@ module Api
     respond_to :json
 
     include Authentification
+    include CanCan::ControllerAdditions
 
     check_authorization
     load_resource find_by: :uid
     load_and_authorize_resource
-
 
     # TODO @refactor use in the same way error handling
     rescue_from CanCan::AccessDenied do

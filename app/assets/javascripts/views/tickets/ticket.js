@@ -16,12 +16,12 @@ Helpdesk.Views.Ticket = Backbone.View.extend({
   editTicket: function (el) {
     console.log('editTicket');
     el.preventDefault();
-    Helpdesk.router.navigate('/tickets/' + this.model.id + '/edit', true);
+    Helpdesk.router.navigate('/tickets/' + this.model.id + '/edit', {trigger: true});
   },
   showTicket: function (el) {
     console.log('showTicket');
     el.preventDefault();
-    Helpdesk.router.navigate('/tickets/' + this.model.id, true);
+    Helpdesk.router.navigate('/tickets/' + this.model.id, {trigger: true});
   },
   deleteTicket: function (el) {
     console.log('deleteTicket');

@@ -9,4 +9,10 @@ class Ticket < ActiveRecord::Base
   validates :title, :content, :status, :user_id, presence: true
 
   belongs_to :user
+
+  before_validation :set_status
+
+  def set_status
+    self.status = Status::OPEN unless status.present?
+  end
 end

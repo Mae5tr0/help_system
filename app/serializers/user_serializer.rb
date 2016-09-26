@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
   include WithSerializedUid
 
-  attributes :email
+  attributes :email, :role
 end

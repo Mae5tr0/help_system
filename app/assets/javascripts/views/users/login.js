@@ -1,5 +1,4 @@
 Helpdesk.Views.Login = Backbone.View.extend({
-
   template: JST['users/login'],
 
   el: 'body',

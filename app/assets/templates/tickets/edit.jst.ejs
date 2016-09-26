@@ -1,0 +1,11 @@
+<h2 class="sub-header"><%= ticket.get('title') %></h2>
+<a class="ticket-edit glyphicon glyphicon-cog"></a>
+<p>
+	<strong>Content:</strong>
+	<%= ticket.get('content') %>
+</p>
+<p>
+	<strong>Status:</strong>
+	<%= ticket.get('status') %>
+</p>
+<button type="button" class="btn btn-warning close-ticket">Close ticket</button>

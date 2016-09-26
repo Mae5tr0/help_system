@@ -1,12 +1,17 @@
-<h2 class="sub-header">Tickets</h2>
-<a class="create-ticket glyphicon glyphicon-plus"></a>
-<div class="table-responsive">
-	<table class="table table-striped table-bordered table-hover tickets">
-		<tr>
-			<th>Title</th>
-			<th>Content</th>
-			<th>Status</th>
-			<th></th>
-		</tr>
-	</table>
-</div>
+<h2 class="sub-header">New ticket</h2>
+
+<form id="new-ticket" name="ticket">
+	<div class="field">
+		<label for="title"> title:</label>
+		<input type="text" name="title" id="title">
+	</div>
+
+	<div class="field">
+		<label for="content"> content:</label>
+		<input type="text" name="content" id="content">
+	</div>
+
+	<div class="actions">
+		<input type="submit" value="Create Ticket" />
+	</div>
+</form>

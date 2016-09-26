@@ -11,10 +11,7 @@ Helpdesk.Views.TicketsIndex = Backbone.View.extend({
       success: function () {
         this.$el.html(this.template());
         this.collection.each(this.renderItem);
-      }.bind(this),
-      error: function() {
-        console.log("fail to fetch tickets");
-      }
+      }.bind(this)
     });
   },
 
@@ -26,6 +23,6 @@ Helpdesk.Views.TicketsIndex = Backbone.View.extend({
   createTicket: function (el) {
     console.log('createTicket');
     el.preventDefault();
-    Helpdesk.router.navigate('/tickets/new', true);
+    Helpdesk.router.navigate('/tickets/new', {trigger: true});
   }
 });

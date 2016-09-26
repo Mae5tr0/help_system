@@ -2,7 +2,7 @@ module Api
   module V1
     class TicketsController < ApiController
       def index
-        respond_with @tickets
+        respond_with @tickets.preload(:user)
       end
 
       def show
@@ -10,10 +10,16 @@ module Api
       end
 
       def create
+        @ticket.user = current_user
+        @ticket.save!
+
         head :no_content
       end
 
       def update
+        @ticket.update(params.permit(:status))
+        @ticket.save!
+
         head :no_content
       end
 
@@ -21,6 +27,10 @@ module Api
         @ticket.destroy
 
         head :no_content
+      end
+
+      def ticket_params
+        params.permit(:title, :content)
       end
     end
   end

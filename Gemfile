@@ -38,7 +38,7 @@ gem 'dotenv-rails', '2.1.1'
 
 # Authentication
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
