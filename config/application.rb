@@ -36,5 +36,8 @@ module Server
 
     config.exceptions_app = ExceptionsApp.new(Rails.public_path)
     # config.middleware.delete(ActionDispatch::DebugExceptions)
+
+    require 'pdfkit'
+    config.middleware.use PDFKit::Middleware, {}, :only => '/reports'
   end
 end

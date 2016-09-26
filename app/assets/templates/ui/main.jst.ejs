@@ -17,6 +17,7 @@
 				<li><a class='tickets'>Tickets</a></li>
 				<% if (Helpdesk.profile.isAdmin() || Helpdesk.profile.isSupport()) {%>
 					<li><a class="users">Users</a></li>
+					<li><a class="report" href='/reports/tickets.pdf'>Ticket report</a></li>
 				<% } %>
 			</ul>
 		</div>

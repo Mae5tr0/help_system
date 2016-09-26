@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  # mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root to: 'application#index'
   get '*path', to: 'application#index', constraints: ->(request) do
-    !request.xhr? && request.format.html?
+    request.format.html? && !(request.original_fullpath =~ /reports/)
   end
 
   namespace :api, defaults: { format: 'json'} do
@@ -22,4 +21,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get 'reports/tickets', to: 'reports#tickets'
 end

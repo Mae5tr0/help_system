@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Status</th>
+    <th>User email</th>
+  </tr>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.title %></td>
+      <td><%= ticket.status %></td>
+      <td><%= ticket.user.email %></td>
+    </tr>
+  <% end %>
+</table>
