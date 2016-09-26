@@ -1,13 +1,6 @@
 Helpdesk.Router = Backbone.Router.extend({
   initialize: function () {
     console.log("initialize router");
-
-    Helpdesk.on('login', function () {
-      Helpdesk.router.navigate('tickets', {trigger: true});
-    });
-    Helpdesk.on('logout', function () {
-      Helpdesk.router.navigate('login', {trigger: true});
-    });
   },
 
   routes: {

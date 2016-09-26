@@ -8,30 +8,12 @@
   <meta name="author" content="">
   <title>Crossover test task</title>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag  'application', media: 'all' %>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand">Crossover test task</a>
-      </div>
-    </div>
-  </nav>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar"></div>
-      <div id="content" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <%= yield %>
-      </div>
-    </div>
+  <div class="container" id="main">
+    <div id="loading">Loading...</div>
   </div>
+  <%= javascript_include_tag 'application' %>
 </body>
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </html>

@@ -12,6 +12,13 @@ window.Helpdesk = {
       window.history.pushState('', '', '/login');
     }
     Backbone.history.start({pushState: true});
+
+    Helpdesk.on('authentication:login', function () {
+      Helpdesk.router.navigate('tickets', {trigger: true});
+    });
+    Helpdesk.on('authentication:logout', function () {
+      Helpdesk.router.navigate('login', {trigger: true});
+    });
   }
 };
 

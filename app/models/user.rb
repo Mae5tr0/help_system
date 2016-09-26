@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :validatable
 
   include WithUid
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
 
   validates :auth_token, uniqueness: true
 

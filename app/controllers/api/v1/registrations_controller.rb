@@ -9,7 +9,7 @@ module Api
         # user.validate!
         fail BadRequestError, :invalid_params, user.errors.full_messages.first unless user.save
 
-        render json: ''
+        render json: user, serializer: TokenSerializer
       end
     end
   end

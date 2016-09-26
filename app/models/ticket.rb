@@ -6,7 +6,7 @@ class Ticket < ActiveRecord::Base
   end
   include WithUid
 
-  validates :title, :content, :status, presence: true
+  validates :title, :content, :status, :user_id, presence: true
 
   belongs_to :user
 end

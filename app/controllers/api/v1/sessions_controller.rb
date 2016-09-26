@@ -6,9 +6,7 @@ module Api
         user_email = session_params[:email]
         user = user_email.present? && User.find_by(email: user_email)
 
-        fail UnauthorizedError, :invalid_credentials unless user.valid_password? user_password
-        user.generate_auth_token!
-        sign_in user, store: false
+        fail UnauthorizedError, :invalid_credentials unless user.present? && user.valid_password?(user_password)
 
         render json: user, serializer: TokenSerializer
       end
