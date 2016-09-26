@@ -5,7 +5,16 @@ class User < ActiveRecord::Base
 
   include WithUid
   has_many :tickets
-  has_many :access_tokens
+
+  validates :auth_token, uniqueness: true
+
+  before_create :generate_auth_token!
+
+  def generate_auth_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
+  end
 
   # TODO @refactor
   module Role
@@ -24,6 +33,8 @@ class User < ActiveRecord::Base
       new(role: Role::GUEST)
     end
   end
+
+
 
   # def admin?
   #   role == Role::ADMIN

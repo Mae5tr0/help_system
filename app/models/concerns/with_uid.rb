@@ -3,10 +3,12 @@ module WithUid
 
   included do
     before_create :generate_uid
+    validates :uid, uniqueness: true
   end
 
-  # @TODO @refactor
   def generate_uid
-    self.uid = "#{self.class.name.downcase}_#{SecureRandom.uuid}"
+    begin
+      self.uid = "#{self.class.name.downcase}_#{SecureRandom.uuid}"
+    end while self.class.exists?(uid: uid)
   end
 end

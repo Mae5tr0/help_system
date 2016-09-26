@@ -1,7 +1,7 @@
 class CreateTickets < ActiveRecord::Migration
   def change
     create_table :tickets do |t|
-      t.string :uid, uniq: true, index: true, null: false
+      t.string :uid, null: false
       t.string :title, null: false
       t.text :content, null: false
       t.string :status, null: false
@@ -9,5 +9,7 @@ class CreateTickets < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :tickets, :uid, unique: true
   end
 end

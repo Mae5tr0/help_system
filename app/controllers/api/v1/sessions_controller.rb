@@ -7,19 +7,21 @@ module Api
         user = user_email.present? && User.find_by(email: user_email)
 
         fail UnauthorizedError, :invalid_credentials unless user.valid_password? user_password
-
+        user.generate_auth_token!
         sign_in user, store: false
-        token = AccessToken.for(user)
-        render json: token
+
+        render json: user, serializer: TokenSerializer
       end
 
       def destroy
-        AccessToken.find_by_token(params[:id]).revoke!
+        current_user.generate_auth_token!
+        current_user.save
+
         head :no_content
       end
 
       def session_params
-        params.require(:session).permit(:password, :email)
+        params.permit(:password, :email)
       end
     end
   end
