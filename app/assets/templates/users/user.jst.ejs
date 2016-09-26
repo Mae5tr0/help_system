@@ -2,5 +2,7 @@
 <td><%= user.get('role') %></td>
 <td class="action">
 	<a class="glyphicon glyphicon-eye-open show-user"></a>
-	<a class="glyphicon glyphicon-cog edit-user"></a>
+	<% if (Helpdesk.profile.isAdmin()) {%>
+		<a class="glyphicon glyphicon-cog edit-user"></a>
+	<% } %>
 </td>

@@ -32,6 +32,13 @@ module Api
       def ticket_params
         params.permit(:title, :content)
       end
+
+      def search
+        authorize! :index, Ticket
+        @tickest = Ticket.search(params[:query])
+
+        respond_with @tickets
+      end
     end
   end
 end

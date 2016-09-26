@@ -15,4 +15,10 @@ class Ticket < ActiveRecord::Base
   def set_status
     self.status = Status::OPEN unless status.present?
   end
+
+  class << self
+    def search(titleString)
+      where('title like ?', titleString)
+    end
+  end
 end

@@ -15,7 +15,9 @@
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
 				<li><a class='tickets'>Tickets</a></li>
-				<li><a class="users">Users</a></li>
+				<% if (Helpdesk.profile.isAdmin() || Helpdesk.profile.isSupport()) {%>
+					<li><a class="users">Users</a></li>
+				<% } %>
 			</ul>
 		</div>
 		<div id='content' class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

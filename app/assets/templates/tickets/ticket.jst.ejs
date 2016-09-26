@@ -3,6 +3,8 @@
 <td><%= ticket.get('user').email %></td>
 <td class="action">
 	<a class="glyphicon glyphicon-eye-open show-ticket"></a>
-	<a class="glyphicon glyphicon-cog edit-ticket"></a>
-	<a class="glyphicon glyphicon-remove delete-ticket"></a>
+	<% if (Helpdesk.profile.isAdmin() || Helpdesk.profile.isSupport()) {%>
+		<a class="glyphicon glyphicon-cog edit-ticket"></a>
+		<a class="glyphicon glyphicon-remove delete-ticket"></a>
+	<% } %>
 </td>

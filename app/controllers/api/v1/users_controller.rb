@@ -15,6 +15,12 @@ module Api
 
         head :no_content
       end
+
+      def profile
+        authorize! :show, current_user
+
+        respond_with current_user
+      end
     end
   end
 end
