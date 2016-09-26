@@ -10,7 +10,7 @@ module Api
       end
 
       def update
-        @user.update(params.permit(:role))
+        @user.role = params[:role].downcase
         @user.save!
 
         head :no_content

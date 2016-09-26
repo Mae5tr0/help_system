@@ -1,1 +1,20 @@
 <h2 class="sub-header">Edit user</h2>
+
+<p>
+	<strong>Email:</strong>
+	<%= user.get('email') %>
+</p>
+
+<form id="change-role" name="role">
+	<div class="field">
+		<label for="role">Role:</label>
+		<select id='roles' class="form-control">
+			<option <%= user.get('role') == 'support' ? 'selected' : '' %> >Support</option>
+			<option <%= user.get('role') == 'customer' ? 'selected' : '' %> >Customer</option>
+		</select>
+	</div>
+
+	<div class="actions">
+		<input type="submit" value="Change role" />
+	</div>
+</form>

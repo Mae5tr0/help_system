@@ -2,7 +2,7 @@ Helpdesk.Views.UserShow = Backbone.View.extend({
   template: JST['users/show'],
 
   events: {
-    'click a.edit-user': 'editUser'
+    'click a.user-edit': 'editUser'
   },
 
   initialize: function (userId) {
@@ -20,7 +20,7 @@ Helpdesk.Views.UserShow = Backbone.View.extend({
   },
 
   editUser: function (el) {
-    console.log('editTicket');
+    console.log('edituser');
     el.preventDefault();
     Helpdesk.router.navigate('/users/' + this.model.id + '/edit', {trigger: true});
   }
