@@ -26,10 +26,7 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   successLogin: function (model, response) {
-    console.log("success login");
-    console.log(response);
-    var token = response.value;
-    Helpdesk.storage.set('authToken', response.value);
+    Helpdesk.storage.set('authToken', response.token);
     Helpdesk.trigger('authentication:login');
   },
 
@@ -44,8 +41,8 @@ Helpdesk.Views.Login = Backbone.View.extend({
   signIn: function (ev) {
     console.log('sign in');
     ev.preventDefault();
-    var session = new Helpdesk.Models.UserSession();
-    session.save(this.formData(),
+    var login = new Helpdesk.Models.UserLogin();
+    login.save(this.formData(),
       {
         success: this.successLogin,
         error: this.errorLogin.bind(this)

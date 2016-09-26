@@ -1,8 +1,6 @@
 Helpdesk.Views.TicketShow = Backbone.View.extend({
   template: JST['tickets/show'],
 
-  el: '#content',
-
   events: {
     'click a.edit-ticket': 'editTicket'
   },

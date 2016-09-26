@@ -13,9 +13,9 @@ module Api
 
 
     # TODO @refactor use in the same way error handling
-    # rescue_from CanCan::AccessDenied do
-    #   raise UnauthorizedError, :insufficient_privileges
-    # end
+    rescue_from CanCan::AccessDenied do
+      raise UnauthorizedError, :insufficient_privileges
+    end
 
     def index
       render :index

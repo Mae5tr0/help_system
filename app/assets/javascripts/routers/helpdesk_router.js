@@ -25,8 +25,10 @@ Helpdesk.Router = Backbone.Router.extend({
 
   indexTickets: function () {
     console.log("indexTickets");
-    var view = new Helpdesk.Views.TicketsIndex;
-    view.render();
+    this.show(new Helpdesk.Views.TicketsIndex);
+    //var view = new Helpdesk.Views.Main(new Helpdesk.Views.TicketsIndex);
+    //var view = new Helpdesk.Views.TicketsIndex;
+    //view.render();
   },
 
   showTicket: function (ticketId) {
@@ -68,6 +70,11 @@ Helpdesk.Router = Backbone.Router.extend({
   login: function () {
     console.log("login");
     var view = new Helpdesk.Views.Login();
+    view.render();
+  },
+
+  show: function (contentView) {
+    var view = new Helpdesk.Views.Main({model: contentView});
     view.render();
   }
 });

@@ -1,8 +1,6 @@
 Helpdesk.Views.TicketsIndex = Backbone.View.extend({
   template: JST['tickets/index'],
 
-  el: '#content',
-
   events: {
     'click a.create-ticket': 'createTicket'
   },

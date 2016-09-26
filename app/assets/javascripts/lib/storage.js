@@ -13,7 +13,7 @@ Helpdesk.Libs.Storage = function Storage(userNameSpace) {
   this.set = function set(key, value) {
     localStorage[storageKey(key)] = value;
   };
-  this.remove = function remove(key) {
+  this.del = function remove(key) {
     localStorage.removeItem(storageKey(key));
   };
 };
