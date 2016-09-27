@@ -13,8 +13,6 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   showErrorMessage: function (message) {
-    console.log("show error message");
-    console.log(message);
   },
 
   formData: function() {
@@ -30,15 +28,9 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   errorLogin: function (model, response) {
-    console.log("error login");
-    console.log(response);
-    //var errorMessage = response.responseJSON.meta.error_message;
-    //console.log(errorMessage);
-    //this.showErrorMessage(errorMessage);
   },
 
   signIn: function (ev) {
-    console.log('sign in');
     ev.preventDefault();
     var login = new Helpdesk.Models.UserLogin();
     login.save(this.formData(),
@@ -50,7 +42,6 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   signUp: function (ev) {
-    console.log('sign up');
     ev.preventDefault();
     var user = new Helpdesk.Models.User();
     user.save(this.formData(),

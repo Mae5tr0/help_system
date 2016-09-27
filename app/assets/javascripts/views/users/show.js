@@ -13,14 +13,12 @@ Helpdesk.Views.UserShow = Backbone.View.extend({
     this.model = new Helpdesk.Models.User({id: this.userId});
     this.model.fetch({
       success: function () {
-        console.log("success");
         this.$el.html(this.template({user: this.model}));
       }.bind(this)
     });
   },
 
   editUser: function (el) {
-    console.log('edituser');
     el.preventDefault();
     Helpdesk.router.navigate('/users/' + this.model.id + '/edit', {trigger: true});
   }

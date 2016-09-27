@@ -13,10 +13,6 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
   end
 
   def body
-
-    puts 'Exception App'
-    puts exception
-    # TODO @refactor
     if exception.is_a?(ApplicationError)
       {
           meta: {
@@ -27,8 +23,8 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
     else
       {
           meta: {
-              error_type: 'error',
-              error_message: 'message',
+              error_type: exception.class.name,
+              error_message: '',
           }
       }
     end

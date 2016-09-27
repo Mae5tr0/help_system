@@ -11,7 +11,9 @@ module Api
 
       def create
         @ticket.user = current_user
-        @ticket.save!
+        unless @ticket.save
+          fail BadRequestError.new(:invalid_params, @ticket.errors.full_messages.join(','))
+        end
 
         head :no_content
       end
@@ -29,15 +31,15 @@ module Api
         head :no_content
       end
 
-      def ticket_params
-        params.permit(:title, :content)
-      end
-
       def search
         authorize! :index, Ticket
 
         @tickets = Ticket.search(params[:query]).preload(:user)
         respond_with @tickets
+      end
+
+      def ticket_params
+        params.permit(:title, :content)
       end
     end
   end

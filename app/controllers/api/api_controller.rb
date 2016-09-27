@@ -5,10 +5,9 @@ module Api
     self.responder = ApplicationResponder
     respond_to :json
 
-    include Authentification
+    include Authenticable
     include CanCan::ControllerAdditions
 
-    check_authorization
     load_resource find_by: :uid
     load_and_authorize_resource only: [:index, :show, :create, :update, :destroy]
 

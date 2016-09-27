@@ -25,13 +25,11 @@ Helpdesk.Views.TicketNew = Backbone.View.extend({
   },
 
   save: function (ev) {
-    console.log('save');
     ev.preventDefault();
     ev.stopPropagation();
     var collection = new Helpdesk.Collections.Tickets();
     collection.create(this.formData(ev.currentTarget), {
       success: function () {
-        console.log('success create');
         Helpdesk.router.navigate('tickets', {trigger: true});
       },
       error: this.showError.bind(this)

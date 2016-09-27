@@ -22,7 +22,6 @@ Helpdesk.Views.TicketsIndex = Backbone.View.extend({
   },
 
   createTicket: function (el) {
-    console.log('createTicket');
     el.preventDefault();
     Helpdesk.router.navigate('/tickets/new', {trigger: true});
   },
@@ -36,7 +35,6 @@ Helpdesk.Views.TicketsIndex = Backbone.View.extend({
       data: ('query=' + value),
       headers: { 'Authorization': Helpdesk.storage.get('authToken') },
       success: function (response) {
-        console.log(response);
         this.render_collection(new Helpdesk.Collections.Tickets(response));
       }.bind(this),
       error: function () {

@@ -16,8 +16,7 @@ class User < ActiveRecord::Base
     end while self.class.exists?(auth_token: auth_token)
   end
 
-  # TODO @refactor
-  module Role
+  class Role
     ADMIN = 'admin'.freeze
     SUPPORT_MANAGER = 'support'.freeze
     CUSTOMER = 'customer'.freeze
@@ -33,18 +32,4 @@ class User < ActiveRecord::Base
       new(role: Role::GUEST)
     end
   end
-
-
-
-  # def admin?
-  #   role == Role::ADMIN
-  # end
-  #
-  # def manager?
-  #   role == Role::SUPPORT_MANAGER
-  # end
-  #
-  # def customer?
-  #   role == Role::CUSTOMER
-  # end
 end

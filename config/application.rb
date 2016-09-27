@@ -17,6 +17,7 @@ module Server
       #{config.root}/app/exceptions
       #{config.root}/app/serializers/concerns
       #{config.root}/app/controllers/api/concerns
+      #{config.root}/lib
     )
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -35,9 +36,19 @@ module Server
     config.active_record.raise_in_transactional_callbacks = true
 
     config.exceptions_app = ExceptionsApp.new(Rails.public_path)
-    # config.middleware.delete(ActionDispatch::DebugExceptions)
+    config.middleware.delete(ActionDispatch::DebugExceptions)
 
     require 'pdfkit'
     config.middleware.use PDFKit::Middleware, {}, :only => '/reports'
+
+    config.generators do |g|
+      g.test_framework :rspec, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.view_specs false
+      g.helper_specs false
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
+    end
   end
 end

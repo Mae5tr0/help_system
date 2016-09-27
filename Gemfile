@@ -41,8 +41,10 @@ group :development, :test do
   # Spec
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-
-  # gem 'jasmine'
+  gem 'ffaker'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do

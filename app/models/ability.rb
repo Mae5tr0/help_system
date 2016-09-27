@@ -9,9 +9,10 @@ class Ability
     elsif current_user.role?(User::Role::SUPPORT_MANAGER)
       can :manage, Ticket
 
-      can :index, User, ['role != ?', User::Role::ADMIN]
-      can :manage, User do |user|
-        !user.admin?
+      can :index, User
+      can :show, User
+      can :update, User do |user|
+        !user.role?(User::Role::ADMIN)
       end
     elsif current_user.role?(User::Role::CUSTOMER)
       can :create, Ticket

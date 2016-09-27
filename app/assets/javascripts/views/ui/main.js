@@ -20,13 +20,12 @@ Helpdesk.Views.Main = Backbone.View.extend({
   },
 
   logout: function (ev) {
-    console.log("logout");
     ev.preventDefault();
     var session = new Helpdesk.Models.UserLogout();
     session.destroy({
       success: function () {
-        console.log("logout success");
         Helpdesk.storage.del('authToken');
+        Helpdesk.profile = undefined;
         Helpdesk.trigger('authentication:logout');
       }
     });
@@ -37,19 +36,16 @@ Helpdesk.Views.Main = Backbone.View.extend({
   },
 
   index: function (ev) {
-    console.log("main logo");
     ev.preventDefault();
     Helpdesk.router.navigate('tickets', { trigger: true });
   },
 
   tickets: function (ev) {
-    console.log("menu tickets");
     ev.preventDefault();
     Helpdesk.router.navigate('tickets', { trigger: true });
   },
 
   users: function (ev) {
-    console.log("menu users");
     ev.preventDefault();
     Helpdesk.router.navigate('users', {trigger: true});
   }

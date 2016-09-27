@@ -13,23 +13,19 @@ Helpdesk.Views.TicketEdit = Backbone.View.extend({
     this.model = new Helpdesk.Models.Ticket({id: this.ticketId});
     this.model.fetch({
       success: function () {
-        console.log("success");
         this.$el.html(this.template({ticket: this.model}));
       }.bind(this)
     });
   },
 
   showError: function () {
-    console.log('show error');
   },
 
   closeTicket: function (el) {
-    console.log('closeTicket');
     el.preventDefault();
-    this.model.save({status: 'close'}, {
+    this.model.save({status: 'closed'}, {
       patch: true,
       success: function () {
-        console.log('success closeTicket');
         Helpdesk.router.navigate('tickets', {trigger: true});
       },
       error: this.showError.bind(this)

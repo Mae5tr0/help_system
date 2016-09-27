@@ -6,5 +6,5 @@ en:
     unauthorized_error:
       empty_token: Access token can't be blank
       invalid_token: Invalid access_token
-      invalid_credention: Invalid email or password
+      invalid_credentials: Invalid email or password
       insufficient_privileges: Action not allowed
