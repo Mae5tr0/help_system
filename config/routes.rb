@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'application#index'
   get '*path', to: 'application#index', constraints: ->(request) do
-    request.format.html? && !(request.original_fullpath =~ /reports/)
+    request.format.html?
   end
 
   namespace :api, defaults: { format: 'json'} do
@@ -21,6 +21,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  get 'reports/tickets', to: 'reports#tickets'
 end

@@ -23,10 +23,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2'
 
-# PDF generation
-gem 'pdfkit'
-gem 'wkhtmltopdf-binary'
-
 # Architecture
 gem 'dotenv-rails', '2.1.1'
 
@@ -42,14 +38,25 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'ffaker'
-  gem 'shoulda-matchers'
+end
+
+group :test do
   gem 'capybara'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'email_spec'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'web-console'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
   # Code quality
   gem 'rubocop'
