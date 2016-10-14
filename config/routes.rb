@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     request.format.html?
   end
 
-  namespace :api, defaults: { format: 'json'} do
+  namespace :api, defaults: { format: 'json'}, constraints: { subdomain: 'api' }, path: '/' do
     namespace :v1 do
       devise_for :users
 
