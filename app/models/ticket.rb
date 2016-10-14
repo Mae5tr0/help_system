@@ -1,19 +1,19 @@
 class Ticket < ActiveRecord::Base
-  class Status
-    OPEN = 'open'.freeze
-    CLOSED = 'closed'.freeze
-  end
+  include AASM
   include WithUid
 
-  validates :title, :content, :status, :user_id, presence: true
+  aasm column: :status do
+    state :open, :initial => true
+    state :closed
+
+    event :close do
+      transitions :from => :open, :to => :closed
+    end
+  end
+
+  validates :title, :content, :user_id, presence: true
 
   belongs_to :user
-
-  before_validation :set_status
-
-  def set_status
-    self.status = Status::OPEN unless status.present?
-  end
 
   class << self
     def search(condition)

@@ -35,11 +35,8 @@ module Server
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.exceptions_app = ExceptionsApp.new(Rails.public_path)
-    config.middleware.delete(ActionDispatch::DebugExceptions)
-
-    require 'pdfkit'
-    config.middleware.use PDFKit::Middleware, {}, :only => '/reports'
+    # config.exceptions_app = ExceptionsApp.new(Rails.public_path)
+    # config.middleware.delete(ActionDispatch::DebugExceptions)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true

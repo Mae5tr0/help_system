@@ -1,0 +1,8 @@
+AllCops:
+  Exclude:
+    - '**/schema.rb'
+    - 'vendor/**/*'
+  TargetRubyVersion: 2.2
+
+Rails:
+  Enabled: true

@@ -23,10 +23,14 @@ gem 'uglifier', '>= 1.3.0'
 
 # Architecture
 gem 'dotenv-rails', '2.1.1'
+gem 'decent_exposure'
+
+# State machine
+gem 'aasm'
 
 # Authentication
 gem 'devise'
-gem 'cancancan'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -36,6 +40,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'ffaker'
+
+  # Code quality
+  gem 'rubocop'
 end
 
 group :test do
@@ -49,8 +56,8 @@ end
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-commands-rspec'
+  # gem 'spring'
+  # gem 'spring-commands-rspec'
   gem 'web-console'
 
   gem 'better_errors'

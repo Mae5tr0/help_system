@@ -7,6 +7,7 @@ module WithUid
   end
 
   def generate_uid
+    return if uid.present?
     begin
       self.uid = "#{self.class.name.downcase}_#{SecureRandom.uuid}"
     end while self.class.exists?(uid: uid)

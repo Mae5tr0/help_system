@@ -26,8 +26,7 @@ namespace :data do
           uid: "ticket_#{SecureRandom.uuid}",
           title: "Ticket_#{n}",
           content: "Content #{n}",
-          user_id: customers.sample.id,
-          status: Ticket::Status::OPEN
+          user_id: customers.sample.id
       )
     end
   end

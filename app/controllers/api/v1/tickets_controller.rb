@@ -32,7 +32,7 @@ module Api
       end
 
       def search
-        authorize! :index, Ticket
+        # authorize! :index, Ticket
 
         @tickets = Ticket.search(params[:query]).preload(:user)
         respond_with @tickets

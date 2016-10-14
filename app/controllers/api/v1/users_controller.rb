@@ -17,7 +17,7 @@ module Api
       end
 
       def profile
-        authorize! :show, current_user
+        # authorize! :show, current_user
 
         respond_with current_user
       end

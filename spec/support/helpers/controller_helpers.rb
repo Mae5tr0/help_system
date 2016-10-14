@@ -25,7 +25,7 @@ module ControllerHelpers
   #       get :index
   #     end
 
-  def login(user = create(:user))
+  def login(user = build(:user))
     allow(controller).to receive(:current_user).and_return(user)
   end
 end
