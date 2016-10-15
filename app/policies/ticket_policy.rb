@@ -23,7 +23,7 @@ class TicketPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      return scope.all if user.admin? || user.support?
+      return scope if user.admin? || user.support?
       scope.where(user_id: user.id)
     end
   end
