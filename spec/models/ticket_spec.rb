@@ -17,9 +17,9 @@ RSpec.describe Ticket, type: :model do
   it { is_expected.to belong_to :user }
 
   context 'status' do
-    it { is_expected.to have_state(:open) }
+    it { is_expected.to have_state(:opened) }
     it { is_expected.to allow_event(:close) }
-    it { is_expected.to transition_from(:open).to(:closed).on_event(:close) }
+    it { is_expected.to transition_from(:opened).to(:closed).on_event(:close) }
     it { is_expected.to_not allow_transition_to(:close) }
   end
 

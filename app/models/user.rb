@@ -17,20 +17,22 @@ class User < ActiveRecord::Base
     end while self.class.exists?(auth_token: auth_token)
   end
 
+  # TODO generate checker methods
   class Role
     ADMIN = 'admin'.freeze
-    SUPPORT_MANAGER = 'support'.freeze
+    SUPPORT = 'support'.freeze
     CUSTOMER = 'customer'.freeze
-    GUEST = 'guest'.freeze
   end
 
-  def role?(check_role)
-    role == check_role
+  def admin?
+    role == Role::ADMIN
   end
 
-  class << self
-    def guest
-      new(role: Role::GUEST)
-    end
+  def customer?
+    role == Role::CUSTOMER
+  end
+
+  def support?
+    role == Role::SUPPORT
   end
 end

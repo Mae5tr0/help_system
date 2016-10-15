@@ -3,11 +3,11 @@ class Ticket < ActiveRecord::Base
   include WithUid
 
   aasm column: :status do
-    state :open, :initial => true
+    state :opened, :initial => true
     state :closed
 
     event :close do
-      transitions :from => :open, :to => :closed
+      transitions :from => :opened, :to => :closed
     end
   end
 

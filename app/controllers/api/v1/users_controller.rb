@@ -16,6 +16,7 @@ module Api
         head :no_content
       end
 
+      # TODO really need?
       def profile
         # authorize! :show, current_user
 

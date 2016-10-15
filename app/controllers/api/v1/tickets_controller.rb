@@ -1,42 +1,45 @@
 module Api
   module V1
     class TicketsController < ApiController
+      expose :tickets
+      expose :ticket, find_by: :uid
+
       def index
-        respond_with @tickets.preload(:user)
+        respond_with tickets
       end
 
       def show
-        respond_with @ticket
+        respond_with ticket
       end
 
       def create
-        @ticket.user = current_user
-        unless @ticket.save
-          fail BadRequestError.new(:invalid_params, @ticket.errors.full_messages.join(','))
-        end
+        ticket.user = current_user
+        fail BadRequestError.new(:invalid_params, ticket.errors) unless ticket.save
 
         head :no_content
       end
 
       def update
-        @ticket.update(params.permit(:status))
-        @ticket.save!
+        ticket.update(params.permit(:status))
+        ticket.save!
 
         head :no_content
       end
 
       def destroy
-        @ticket.destroy
+        ticket.destroy
 
         head :no_content
       end
 
       def search
-        # authorize! :index, Ticket
+        skip_authorization
 
-        @tickets = Ticket.search(params[:query]).preload(:user)
+        @tickets = tickets.search(params[:query])
         respond_with @tickets
       end
+
+      private
 
       def ticket_params
         params.permit(:title, :content)

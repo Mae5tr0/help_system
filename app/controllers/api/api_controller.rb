@@ -6,14 +6,18 @@ module Api
     respond_to :json
 
     include Authenticable
-    # include CanCan::ControllerAdditions
 
-    # load_resource find_by: :uid
-    # load_and_authorize_resource only: [:index, :show, :create, :update, :destroy]
-    #
-    # rescue_from CanCan::AccessDenied do
+    include Pundit
+    after_action :verify_authorized, except: :index
+    after_action :verify_policy_scoped, only: :index
+
+    # rescue_from Pundit::NotAuthorizedError do
     #   raise UnauthorizedError, :insufficient_privileges
     # end
+
+    decent_configuration do
+      strategy DecentExposure::PunditAuthorizationStrategy
+    end
 
     def index
       render :index

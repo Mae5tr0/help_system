@@ -38,6 +38,9 @@ module Server
     # config.exceptions_app = ExceptionsApp.new(Rails.public_path)
     # config.middleware.delete(ActionDispatch::DebugExceptions)
 
+    config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
+
+
     config.generators do |g|
       g.test_framework :rspec, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'

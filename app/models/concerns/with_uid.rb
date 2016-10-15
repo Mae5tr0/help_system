@@ -1,3 +1,5 @@
+# TODO documentation
+# Refactor module and tests
 module WithUid
   extend ActiveSupport::Concern
 
