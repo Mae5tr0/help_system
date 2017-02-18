@@ -42,6 +42,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'json-schema'
+  gem 'simplecov', require: false
 
   # web tests
   gem 'cucumber-rails', require: false

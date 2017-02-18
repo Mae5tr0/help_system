@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root to: 'application#index'
-  get '*path', to: 'application#index', constraints: lambda do |request|
-    request.format.html?
-  end
+  get '*path', to: 'application#index', constraints: ->(request) { request.format.html? }
 
   namespace :api, defaults: { format: 'json' }, constraints: { subdomain: 'api' }, path: '/' do
     namespace :v1 do
