@@ -10,10 +10,7 @@ RSpec::Matchers.define :match_json_schema do |against|
   match do |json|
     file_name = Rails.root.join('spec', 'json_schemas', "#{against}.json").to_s
 
-    if File.exist?(file_name)
-      JSON::Validator.validate!(file_name, json)
-    else
-      fail "Could not find schema file #{file_name}"
-    end
+    raise "Could not find schema file #{file_name}" unless File.exist?(file_name)
+    JSON::Validator.validate!(file_name, json)
   end
 end

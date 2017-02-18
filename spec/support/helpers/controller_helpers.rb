@@ -13,7 +13,7 @@ module ControllerHelpers
     allow(controller).to receive(:current_user).and_return(user)
   end
 
-  #Return parsed json response
+  # Return parsed json response
   def json
     @json ||= JSON.parse(response.body, symbolize_names: true)
   end

@@ -8,28 +8,14 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
 
   private
 
-  # TODO fix
+  # TODO: fix
   def body
-    if exception.is_a?(ApplicationError)
-      {
-          meta: {
-              error_type: exception.message_id,
-              error_message: exception.message,
-          }
+    {
+      meta: {
+        error_type: exception.message_id,
+        error_message: exception.message
       }
-    else
-      {
-          meta: {
-              error_type: exception.class.name,
-              error_message: '',
-          }
-      }
-    end
-
-  end
-
-  def error_message
-
+    }
   end
 
   def exception

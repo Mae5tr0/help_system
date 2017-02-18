@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-
   root to: 'application#index'
-  get '*path', to: 'application#index', constraints: ->(request) do
+  get '*path', to: 'application#index', constraints: lambda do |request|
     request.format.html?
   end
 
-  namespace :api, defaults: { format: 'json'}, constraints: { subdomain: 'api' }, path: '/' do
+  namespace :api, defaults: { format: 'json' }, constraints: { subdomain: 'api' }, path: '/' do
     namespace :v1 do
       devise_for :users
 

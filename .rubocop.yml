@@ -2,7 +2,14 @@ AllCops:
   Exclude:
     - '**/schema.rb'
     - 'vendor/**/*'
+    - 'db/migrate/*'
   TargetRubyVersion: 2.2
 
 Rails:
   Enabled: true
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false

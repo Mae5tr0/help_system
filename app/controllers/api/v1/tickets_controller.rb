@@ -22,7 +22,7 @@ module Api
       end
 
       def update
-        #TODO improve change status
+        # TODO: improve change status
         authorize ticket
         # ticket.send()
         # ticket.update(params.permit(:status))
@@ -53,4 +53,3 @@ module Api
     end
   end
 end
-

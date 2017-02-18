@@ -8,7 +8,6 @@ namespace :data do
     create(:user, 1,
            role: User::Role::ADMIN,
            email: 'admin@support.com',
-           password: 'super_secret'
-    )
+           password: 'super_secret')
   end
 end

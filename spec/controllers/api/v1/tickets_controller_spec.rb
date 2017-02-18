@@ -67,7 +67,7 @@ describe Api::V1::TicketsController do
     end
 
     it 'can only close ticket' do
-      patch :update, { id: @ticket.uid, status: 'closed', title: 'mega' }
+      patch :update, id: @ticket.uid, status: 'closed', title: 'mega'
 
       should respond_with :no_content
       expect(@ticket.reload.status).to eq('closed')
@@ -80,10 +80,9 @@ describe Api::V1::TicketsController do
       @user = create :user
       @ticket = create :ticket, user: @user
       login(admin)
-      delete :destroy, { id: @ticket.uid }
+      delete :destroy, id: @ticket.uid
     end
 
     it { should respond_with :no_content }
   end
 end
-

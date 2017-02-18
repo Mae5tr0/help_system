@@ -75,7 +75,7 @@ describe Api::V1::UsersController do
   describe '#update' do
     it 'change role' do
       login(admin)
-      patch :update, {id: customer.uid, role: User::Role::SUPPORT }
+      patch :update, id: customer.uid, role: User::Role::SUPPORT
 
       expect(customer.reload.support?).to be_truthy
     end
@@ -83,14 +83,14 @@ describe Api::V1::UsersController do
     it 'invalid role' do
       login(admin)
       expect do
-        patch :update, {id: customer.uid, role: 'invalid' }
+        patch :update, id: customer.uid, role: 'invalid'
       end.to raise_error(BadRequestError)
     end
 
     it 'forbidden to change' do
       login(support)
       expect do
-        patch :update, {id: support.uid, role: User::Role::ADMIN }
+        patch :update, id: support.uid, role: User::Role::ADMIN
       end.to raise_error(UnauthorizedError)
     end
 
@@ -98,7 +98,7 @@ describe Api::V1::UsersController do
       login(admin)
 
       expect do
-        patch :update, {id: 'invalid id', role: User::Role::ADMIN }
+        patch :update, id: 'invalid id', role: User::Role::ADMIN
       end.to raise_error(NotFoundError)
     end
   end

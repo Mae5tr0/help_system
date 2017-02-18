@@ -60,4 +60,3 @@ group :development do
   # Code quality
   gem 'rubocop'
 end
-

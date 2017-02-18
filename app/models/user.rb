@@ -33,12 +33,11 @@ class User < ActiveRecord::Base
 
   before_create :generate_auth_token!
 
-  # Generate token for new user
   def generate_auth_token!
-    return if auth_token.present?
-    begin
+    loop do
       self.auth_token = Devise.friendly_token
-    end while self.class.exists?(auth_token: auth_token)
+      break unless self.class.exists?(auth_token: auth_token)
+    end
   end
 
   def admin?

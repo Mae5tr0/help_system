@@ -5,10 +5,6 @@ module Tickets
     end
 
     def perform
-
     end
-
-    private
-
   end
 end
