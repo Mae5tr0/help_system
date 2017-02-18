@@ -11,7 +11,7 @@ RSpec.describe UserPolicy do
     let(:user) { customer }
 
     permissions :show? do
-      it 'customer can view only self' do
+      it 'customer can view only himself' do
         is_expected.to permit(user, user)
         is_expected.not_to permit(user, another_customer)
       end
@@ -21,7 +21,7 @@ RSpec.describe UserPolicy do
       it { is_expected.not_to permit(user, user) }
     end
 
-    it 'list only self' do
+    it 'list only himself' do
       expect(resolved_scope).to contain_exactly(user)
     end
   end

@@ -1,8 +1,15 @@
-# User policy
+# Policy for user
+# * User can see only himself
+# * Admin and support can see all users
+# * Users can update only admin
+# * Support can see only see other support and users
+#
 class UserPolicy < ApplicationPolicy
-  def show
-    return true if user.admin? || user.support?
-    record.user_id == user.id
+  def show?
+    return true if user.admin?
+    return false if record.admin?
+    return true if user.support?
+    record.id == user.id
   end
 
   def update?

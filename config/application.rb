@@ -18,6 +18,7 @@ module Server
       #{config.root}/app/serializers/concerns
       #{config.root}/app/controllers/api/concerns
       #{config.root}/lib
+      #{config.root}/policies
     )
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -35,11 +36,9 @@ module Server
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # TODO development dummy
     # config.exceptions_app = ExceptionsApp.new(Rails.public_path)
     # config.middleware.delete(ActionDispatch::DebugExceptions)
-
-    config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
-
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true

@@ -1,12 +1,15 @@
 module Api
   module V1
     class UsersController < ApiController
+      expose :users
+      expose :user, find_by: :uid
+
       def index
-        respond_with @users
+        render json: users
       end
 
       def show
-        respond_with @user
+        render json: user
       end
 
       def update
@@ -18,9 +21,7 @@ module Api
 
       # TODO really need?
       def profile
-        # authorize! :show, current_user
-
-        respond_with current_user
+        render json: current_user
       end
     end
   end

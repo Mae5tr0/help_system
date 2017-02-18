@@ -286,7 +286,6 @@ DEPENDENCIES
   mysql2 (~> 0.3.18)
   pundit
   rails (= 4.2.6)
-  responders
   rspec-rails
   rubocop
   sass-rails (~> 5.0)

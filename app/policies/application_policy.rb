@@ -1,4 +1,6 @@
-# Main application policy
+# Default policy for application
+# By default any action is forbidden
+# Only registered users can use system
 class ApplicationPolicy
   attr_reader :user, :record
 

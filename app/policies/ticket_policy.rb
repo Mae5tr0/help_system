@@ -1,4 +1,9 @@
-# Ticket policy
+# Policy for tickets
+# * Ticket can create anyone
+# * User can see only his tickets
+# * Support and admin can view all tickets
+# * User can updated only his opened ticket
+# * Tickets can delete only admin
 #
 class TicketPolicy < ApplicationPolicy
   def create?

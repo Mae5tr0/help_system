@@ -5,11 +5,11 @@ module Api
       expose :ticket, find_by: :uid
 
       def index
-        respond_with tickets
+        render json: tickets
       end
 
       def show
-        respond_with ticket
+        render json: ticket
       end
 
       def create
@@ -21,7 +21,7 @@ module Api
       end
 
       def update
-        UpdateTicketService.new(params).perform
+        # UpdateTicketService.new(params).perform
         ticket.update(params.permit(:status))
         ticket.save!
 
@@ -35,10 +35,11 @@ module Api
       end
 
       def search
+        # TODO why?
         skip_authorization
 
-        @tickets = tickets.search(params[:query])
-        respond_with @tickets
+        @tickets = Ticket.search(params[:query])
+        render json: @tickets
       end
 
       private

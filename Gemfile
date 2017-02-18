@@ -7,7 +7,6 @@ gem 'mysql2', '~> 0.3.18'
 
 # JSON
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'responders'
 
 # Stylesheets
 gem 'bootstrap-sass'

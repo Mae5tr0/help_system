@@ -2,9 +2,6 @@ require 'application_responder'
 
 module Api
   class ApiController < ApplicationController
-    self.responder = ApplicationResponder
-    respond_to :json
-
     include Authenticable
 
     include Pundit
@@ -14,6 +11,10 @@ module Api
     # TODO development dummy
     # rescue_from Pundit::NotAuthorizedError do
     #   raise UnauthorizedError, :insufficient_privileges
+    # end
+
+    # rescue_from AllowedParams::ValidationError do |exception|
+    #   fail BadRequestError.new(:invalid_param, exception.message)
     # end
 
     decent_configuration do
