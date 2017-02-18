@@ -44,9 +44,6 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include ControllerHelpers, type: :controller
-  config.include Request::JsonHelpers, :type => :controller
-  config.include Request::HeadersHelpers, :type => :controller
-  # config.include Devise::TestHelpers, :type => :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -62,10 +59,6 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
-  config.before(:each, type: :controller) do
-    include_default_accept_headers
-  end
 end
 
 Shoulda::Matchers.configure do |config|

@@ -1,10 +1,10 @@
 describe Api::V1::TicketsController do
-  let(:admin) { FactoryGirl.create(:user, role: 'admin') }
-  let(:customer) { FactoryGirl.create(:user, role: 'customer') }
+  let(:admin) { create(:user, role: 'admin') }
+  let(:customer) { create(:user, role: 'customer') }
 
   context '#index' do
     it 'admin can view all tickets' do
-      4.times { FactoryGirl.create :ticket }
+      4.times { create :ticket }
       login(admin)
       get :index
 
@@ -12,8 +12,8 @@ describe Api::V1::TicketsController do
     end
 
     it 'customer can view only his tickets' do
-      2.times { FactoryGirl.create(:ticket, user: customer) }
-      2.times { FactoryGirl.create :ticket }
+      2.times { create(:ticket, user: customer) }
+      2.times { create :ticket }
 
       login(customer)
       get :index
@@ -24,7 +24,7 @@ describe Api::V1::TicketsController do
 
   context '#show' do
     before(:each) do
-      @ticket = FactoryGirl.create :ticket
+      @ticket = create :ticket
       login(admin)
       get :show, id: @ticket.uid
     end
@@ -37,7 +37,7 @@ describe Api::V1::TicketsController do
   context '#create' do
     context 'when is successfully created' do
       before(:each) do
-        @ticket_attributes = FactoryGirl.attributes_for :ticket
+        @ticket_attributes = attributes_for :ticket
         login(customer)
         post :create, @ticket_attributes
       end
@@ -61,8 +61,8 @@ describe Api::V1::TicketsController do
 
   context '#update' do
     before(:each) do
-      @user = FactoryGirl.create :user
-      @ticket = FactoryGirl.create :ticket, user: @user, status: 'open', title: 'title'
+      @user = create :user
+      @ticket = create :ticket, user: @user, status: 'open', title: 'title'
       login(admin)
     end
 
@@ -77,8 +77,8 @@ describe Api::V1::TicketsController do
 
   describe '#destroy' do
     before(:each) do
-      @user = FactoryGirl.create :user
-      @ticket = FactoryGirl.create :ticket, user: @user
+      @user = create :user
+      @ticket = create :ticket, user: @user
       login(admin)
       delete :destroy, { id: @ticket.uid }
     end

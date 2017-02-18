@@ -8,10 +8,7 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
 
   private
 
-  def http_status
-    200
-  end
-
+  # TODO fix
   def body
     if exception.is_a?(ApplicationError)
       {

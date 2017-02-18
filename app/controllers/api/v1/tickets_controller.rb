@@ -1,51 +1,54 @@
 module Api
   module V1
     class TicketsController < ApiController
-      expose :tickets
-      expose :ticket, find_by: :uid
-
       def index
+        @tickets = policy_scope(Ticket)
         render json: tickets
       end
 
       def show
-        render json: ticket
+        authorize ticket
+        render ticket
       end
 
       def create
-        NewTicketService.new(params).perform
+        Tickets::CreateTicketService.new({}).perform
+
         # ticket.user = current_user
+        # TODO validation errors
         # fail BadRequestError.new(:invalid_params, ticket.errors) unless ticket.save
 
         head :no_content
       end
 
       def update
-        # UpdateTicketService.new(params).perform
-        ticket.update(params.permit(:status))
-        ticket.save!
+        #TODO improve change status
+        authorize ticket
+        # ticket.send()
+        # ticket.update(params.permit(:status))
+        # ticket.save!
+
+        Tickets::UpdateTicketService.new({}).perform
 
         head :no_content
       end
 
       def destroy
-        ticket.destroy
+        authorize ticket
+        ticket.destroy!
 
         head :no_content
       end
 
       def search
-        # TODO why?
-        skip_authorization
-
-        @tickets = Ticket.search(params[:query])
+        @tickets = policy_scope(Ticket).search(params[:query])
         render json: @tickets
       end
 
       private
 
-      def ticket_params
-        params.permit(:title, :content)
+      def ticket
+        @ticket ||= Ticket.find_by!(uid: params[:id])
       end
     end
   end

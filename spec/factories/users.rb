@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
     password { Faker::Internet.password(8) }
+    role User::Role::CUSTOMER
 
     transient do
       tickets_count 0
@@ -22,7 +23,5 @@ FactoryGirl.define do
     role User::Role::SUPPORT
   end
 
-  factory :customer, parent: :user do
-    role User::Role::CUSTOMER
-  end
+  factory :customer, parent: :user
 end

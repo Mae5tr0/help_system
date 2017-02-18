@@ -2,6 +2,7 @@ module Api
   module V1
     class RegistrationsController < Devise::RegistrationsController
       def create
+        # TODO move to service
         user = User.new(params.permit(:email, :password))
         user.role = User::Role::CUSTOMER
 

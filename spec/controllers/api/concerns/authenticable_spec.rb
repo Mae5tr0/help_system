@@ -11,7 +11,7 @@ describe Authenticable do
 
   describe '#current_user' do
     before do
-      @user = FactoryGirl.create :user
+      @user = create :user
       request.headers["Authorization"] = @user.auth_token
       allow(authentication).to receive(:request).and_return(request)
     end

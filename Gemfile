@@ -22,7 +22,6 @@ gem 'uglifier', '>= 1.3.0'
 
 # Architecture
 gem 'dotenv-rails', '2.1.1'
-gem 'decent_exposure'
 
 # State machine
 gem 'aasm'
@@ -42,6 +41,7 @@ group :test do
   # Spec
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'json-schema'
 
   # web tests
   gem 'cucumber-rails', require: false

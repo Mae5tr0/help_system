@@ -98,8 +98,6 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
-    decent_exposure (3.0.0)
-      activesupport (>= 4.0)
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -142,6 +140,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    json-schema (2.8.0)
+      addressable (>= 2.4)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
     launchy (2.4.3)
@@ -276,13 +276,13 @@ DEPENDENCIES
   capybara
   cucumber-rails
   database_cleaner
-  decent_exposure
   devise
   dotenv-rails (= 2.1.1)
   email_spec
   factory_girl_rails
   faker
   jquery-rails
+  json-schema
   mysql2 (~> 0.3.18)
   pundit
   rails (= 4.2.6)

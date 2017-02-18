@@ -8,3 +8,7 @@ en:
       invalid_token: Invalid access_token
       invalid_credentials: Invalid email or password
       insufficient_privileges: Action not allowed
+    not_found_error:
+      not_found: Record not found
+    server_error:
+      server_error: Internal server error

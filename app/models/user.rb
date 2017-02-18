@@ -15,6 +15,12 @@
 # @!attribute tickets
 #   @return [ActiveRecord::Relation<Ticket>] user's tickets
 class User < ActiveRecord::Base
+  class Role
+    ADMIN = 'admin'.freeze
+    SUPPORT = 'support'.freeze
+    CUSTOMER = 'customer'.freeze
+  end
+
   devise :database_authenticatable, :registerable, :validatable
 
   include WithUid
@@ -22,6 +28,8 @@ class User < ActiveRecord::Base
   has_many :tickets, dependent: :destroy
 
   validates :auth_token, uniqueness: true
+  validates :role, :email, presence: true
+  validates :role, inclusion: { in: [Role::ADMIN, Role::CUSTOMER, Role::SUPPORT] }
 
   before_create :generate_auth_token!
 
@@ -31,12 +39,6 @@ class User < ActiveRecord::Base
     begin
       self.auth_token = Devise.friendly_token
     end while self.class.exists?(auth_token: auth_token)
-  end
-
-  class Role
-    ADMIN = 'admin'.freeze
-    SUPPORT = 'support'.freeze
-    CUSTOMER = 'customer'.freeze
   end
 
   def admin?

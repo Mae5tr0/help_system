@@ -1,27 +1,31 @@
 module Api
   module V1
     class UsersController < ApiController
-      expose :users
-      expose :user, find_by: :uid
-
       def index
-        render json: users
+        @users = policy_scope(User)
+        render json: @users
       end
 
       def show
+        authorize user
         render json: user
       end
 
       def update
-        @user.role = params[:role].downcase
-        @user.save!
+        authorize user
+
+        Users::ChangeRoleService.new(
+          user: user,
+          role: params[:role]
+        ).perform
 
         head :no_content
       end
 
-      # TODO really need?
-      def profile
-        render json: current_user
+      private
+
+      def user
+        @user ||= User.find_by!(uid: params[:id])
       end
     end
   end

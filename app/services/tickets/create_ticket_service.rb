@@ -1,7 +1,7 @@
 module Tickets
-  class UpdateTicketService
+  class CreateTicketService
     def initialize(params)
-
+      @params = params
     end
 
     def perform

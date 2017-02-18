@@ -19,6 +19,7 @@ module Server
       #{config.root}/app/controllers/api/concerns
       #{config.root}/lib
       #{config.root}/policies
+      #{config.root}/services
     )
 
     # Settings in config/environments/* take precedence over those specified here.
