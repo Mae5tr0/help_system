@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Api::V1::UsersController do
   let(:admin) { FactoryGirl.create(:user, role: 'admin') }
   let(:customer) { FactoryGirl.create(:user, role: 'customer') }

@@ -1,4 +1,3 @@
-require 'rails_helper'
 require_relative 'concerns/with_uid_spec'
 
 RSpec.describe Ticket, type: :model do
@@ -16,7 +15,7 @@ RSpec.describe Ticket, type: :model do
   it { is_expected.to validate_presence_of :user_id }
   it { is_expected.to belong_to :user }
 
-  context 'status' do
+  context 'states' do
     it { is_expected.to have_state(:opened) }
     it { is_expected.to allow_event(:close) }
     it { is_expected.to transition_from(:opened).to(:closed).on_event(:close) }

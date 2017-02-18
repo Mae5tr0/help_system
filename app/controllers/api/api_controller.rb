@@ -11,6 +11,7 @@ module Api
     after_action :verify_authorized, except: :index
     after_action :verify_policy_scoped, only: :index
 
+    # TODO development dummy
     # rescue_from Pundit::NotAuthorizedError do
     #   raise UnauthorizedError, :insufficient_privileges
     # end

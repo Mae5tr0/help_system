@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe UserPolicy do
   let!(:customer) { create(:customer) }
   let!(:another_customer) { create(:customer) }

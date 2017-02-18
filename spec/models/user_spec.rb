@@ -1,4 +1,3 @@
-require 'rails_helper'
 require_relative 'concerns/with_uid_spec'
 
 RSpec.describe User, type: :model do

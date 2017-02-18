@@ -33,35 +33,30 @@ gem 'devise'
 gem 'pundit'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-
-  # Spec
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'ffaker'
-
-  # Code quality
-  gem 'rubocop'
+  gem 'faker'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'email_spec'
-  gem 'selenium-webdriver'
+
+  # Spec
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
+
+  # web tests
+  gem 'cucumber-rails', require: false
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'email_spec'
 end
 
 group :development do
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  # gem 'spring'
-  # gem 'spring-commands-rspec'
   gem 'web-console'
 
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug'
 
   # Code quality
   gem 'rubocop'

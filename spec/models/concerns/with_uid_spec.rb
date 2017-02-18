@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.shared_examples 'with_uid' do
   def model_name
     described_class.name.to_s.downcase
@@ -9,6 +7,8 @@ RSpec.shared_examples 'with_uid' do
 
   context '#generate_uid' do
     it 'generates a unique uid' do
+      allow(SecureRandom).to receive(:uuid).and_return(:uid)
+
       subject.generate_uid
       expect(subject.uid).to eq("#{model_name}_uid")
     end

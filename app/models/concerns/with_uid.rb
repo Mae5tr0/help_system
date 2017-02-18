@@ -1,5 +1,5 @@
-# TODO documentation
-# Refactor module and tests
+# For included models generate uid for
+# new model and validate uniqueness for uid
 module WithUid
   extend ActiveSupport::Concern
 

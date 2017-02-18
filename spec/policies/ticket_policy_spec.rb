@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TicketPolicy do
   let(:customer) { create(:customer) }
   let(:admin) { create(:admin) }

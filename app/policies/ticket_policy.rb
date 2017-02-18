@@ -1,3 +1,5 @@
+# Ticket policy
+#
 class TicketPolicy < ApplicationPolicy
   def create?
     true

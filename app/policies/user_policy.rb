@@ -1,3 +1,4 @@
+# User policy
 class UserPolicy < ApplicationPolicy
   def show
     return true if user.admin? || user.support?

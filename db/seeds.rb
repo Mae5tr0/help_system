@@ -7,8 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!(
-  uid: "user_#{SecureRandom.uuid}",
   email: 'admin@example.com',
-  password: '12345678',
+  password: 'very_secret_password',
   role: User::Role::ADMIN
 )

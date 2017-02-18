@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :ticket do
-    sequence(:title) { |n| "title_#{n}" }
-    sequence(:content) { |n| "content_#{n}" }
+    sequence(:title) { Faker::Lorem.words(3) }
+    sequence(:content) { Faker::Lorem.paragraph(2) }
     user
   end
 end

@@ -1,3 +1,4 @@
+# Main class for all application errors
 class ApplicationError < StandardError
   include ActiveModel::Serialization
 

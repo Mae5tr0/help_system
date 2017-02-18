@@ -13,13 +13,15 @@ module Api
       end
 
       def create
-        ticket.user = current_user
-        fail BadRequestError.new(:invalid_params, ticket.errors) unless ticket.save
+        NewTicketService.new(params).perform
+        # ticket.user = current_user
+        # fail BadRequestError.new(:invalid_params, ticket.errors) unless ticket.save
 
         head :no_content
       end
 
       def update
+        UpdateTicketService.new(params).perform
         ticket.update(params.permit(:status))
         ticket.save!
 

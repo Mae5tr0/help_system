@@ -1,33 +1,14 @@
 namespace :data do
-  desc 'Generae fake data'
+  desc 'Generate fake data'
   task fake: :environment do
-    2.times do |n|
-      User.create!(
-          uid: "user_#{SecureRandom.uuid}",
-          email: "support_#{n}@support.com",
-          password: SecureRandom.uuid,
-          role: User::Role::SUPPORT_MANAGER
-      )
-    end
+    create_list(:user, 30, tickets_count: 10)
 
-    30.times do |n|
-      User.create!(
-          uid: "user_#{SecureRandom.uuid}",
-          email: "customer_#{n}@support.com",
-          password: SecureRandom.uuid,
-          role: User::Role::CUSTOMER
-      )
-    end
+    create(:user, 2, role: User::Role::SUPPORT)
 
-    customers = User.where(role: User::Role::CUSTOMER).all
-
-    100.times do |n|
-      Ticket.create!(
-          uid: "ticket_#{SecureRandom.uuid}",
-          title: "Ticket_#{n}",
-          content: "Content #{n}",
-          user_id: customers.sample.id
-      )
-    end
+    create(:user, 1,
+           role: User::Role::ADMIN,
+           email: 'admin@support.com',
+           password: 'super_secret'
+    )
   end
 end
