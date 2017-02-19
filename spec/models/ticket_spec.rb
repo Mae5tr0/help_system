@@ -25,10 +25,10 @@ RSpec.describe Ticket, type: :model do
   context '#search' do
     it do
       create(:ticket, title: 'Octopus')
-      entry_2 = create(:ticket, title: 'Superman')
-      entry_3 = create(:ticket, title: 'Spiderman')
+      entry2 = create(:ticket, title: 'Superman')
+      entry3 = create(:ticket, title: 'Spiderman')
 
-      expect(Ticket.search('man')).to contain_exactly(entry_2, entry_3)
+      expect(Ticket.search('man')).to contain_exactly(entry2, entry3)
     end
   end
 
