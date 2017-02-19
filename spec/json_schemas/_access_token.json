@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Access token",
+  "description": "Access token",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "token"
+  ],
+  "additionalProperties": false
+}

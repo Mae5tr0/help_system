@@ -21,7 +21,7 @@ gem 'backbone-on-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # Architecture
-gem 'dotenv-rails', '2.1.1'
+gem 'dotenv-rails'
 
 # State machine
 gem 'aasm'
@@ -39,16 +39,16 @@ group :test do
   gem 'database_cleaner'
 
   # Spec
+  gem 'json-schema'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'json-schema'
   gem 'simplecov', require: false
 
   # web tests
-  gem 'cucumber-rails', require: false
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'cucumber-rails', require: false
   gem 'email_spec'
+  gem 'selenium-webdriver'
 end
 
 group :development do

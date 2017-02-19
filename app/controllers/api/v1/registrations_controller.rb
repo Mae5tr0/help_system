@@ -2,13 +2,12 @@ module Api
   module V1
     class RegistrationsController < Devise::RegistrationsController
       def create
-        # TODO: move to service
-        user = User.new(params.permit(:email, :password))
-        user.role = User::Role::CUSTOMER
+        @user = Users::CreateUserService.new(
+          email: params[:email],
+          password: params[:password]
+        ).perform
 
-        raise BadRequestError, :invalid_params, user.errors.full_messages.join(',') unless user.save
-
-        render json: user, serializer: TokenSerializer
+        render json: @user, serializer: TokenSerializer
       end
     end
   end

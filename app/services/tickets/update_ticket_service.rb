@@ -9,7 +9,7 @@ module Tickets
 
     def perform
       @ticket.title = @title if @title
-      @ticket.content= @content if @content
+      @ticket.content = @content if @content
       @ticket.status = @status if @status
       @ticket.save!
     end

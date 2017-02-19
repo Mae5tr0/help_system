@@ -75,12 +75,12 @@ describe Api::V1::TicketsController do
       login(customer)
     end
 
-    let(:ticket_attributes) {
+    let(:ticket_attributes) do
       {
         title: 'Title',
         content: 'Content'
       }
-    }
+    end
 
     it 'success' do
       post :create, ticket_attributes
@@ -97,8 +97,8 @@ describe Api::V1::TicketsController do
     it 'success' do
       expect do
         post :create, ticket_attributes.merge(title: nil, content: nil)
-      end.to raise_error(BadRequestError) { |error|
-        # TODO new validation error format
+      end.to raise_error(BadRequestError) { |_error|
+        # TODO: new validation error format
         # expect(error.message_id).to be == :customer_not_confirmed
       }
     end

@@ -1,8 +1,7 @@
 class Authentication
   include Authenticable
 
-  def request
-  end
+  def request; end
 end
 
 describe Authenticable do

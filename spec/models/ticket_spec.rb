@@ -1,4 +1,4 @@
-require_relative 'concerns/with_uid_spec'
+require_relative 'concerns/with_uid'
 
 RSpec.describe Ticket, type: :model do
   let(:product) { build :ticket }

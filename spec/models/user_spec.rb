@@ -1,4 +1,4 @@
-require_relative 'concerns/with_uid_spec'
+require_relative 'concerns/with_uid'
 
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
@@ -25,18 +25,14 @@ RSpec.describe User, type: :model do
     end
 
     it 'generates another token when one already has been taken' do
-      create(:user, auth_token: 'auth_token')
+      customer = create(:customer)
+      customer.auth_token = 'auth_token'
+      customer.save
+
       allow(Devise).to receive(:friendly_token).and_return('auth_token', 'auth_token_2')
 
-      user.generate_auth_token!
-      expect(user.auth_token).to eq('auth_token_2')
-    end
-
-    it "don't override existed token" do
-      user = create(:user, auth_token: 'auth_token')
-      user.generate_auth_token!
-
-      expect(user.auth_token).to eq('auth_token')
+      another_customer = create(:customer)
+      expect(another_customer.auth_token).to eq('auth_token_2')
     end
   end
 

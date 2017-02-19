@@ -1,15 +1,15 @@
 module Api
   module V1
     class SessionsController < Devise::SessionsController
+      include Authenticable
+
       def create
-        # TODO: move to service
-        user_password = session_params[:password]
-        user_email = session_params[:email]
-        user = user_email.present? && User.find_by(email: user_email)
+        @user = Users::AuthenticateService.new(
+          email: params[:email],
+          password: params[:password]
+        ).perform
 
-        raise UnauthorizedError, :invalid_credentials unless user.present? && user.valid_password?(user_password)
-
-        render json: user, serializer: TokenSerializer
+        render json: @user, serializer: TokenSerializer
       end
 
       def destroy
@@ -19,8 +19,10 @@ module Api
         head :no_content
       end
 
-      def session_params
-        params.permit(:password, :email)
+      protected
+
+      def verify_signed_out_user
+        # disable device before destroy action
       end
     end
   end

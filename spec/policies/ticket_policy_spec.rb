@@ -23,7 +23,7 @@ RSpec.describe TicketPolicy do
       end
     end
 
-    permissions :delete? do
+    permissions :destroy? do
       it { is_expected.not_to permit(user, ticket) }
     end
 
@@ -57,7 +57,7 @@ RSpec.describe TicketPolicy do
       end
     end
 
-    permissions :delete? do
+    permissions :destroy? do
       it { is_expected.not_to permit(user, ticket) }
     end
 
@@ -91,7 +91,7 @@ RSpec.describe TicketPolicy do
       end
     end
 
-    permissions :delete? do
+    permissions :destroy? do
       it { is_expected.to permit(user, ticket) }
     end
 
