@@ -15,11 +15,7 @@
 # @!attribute tickets
 #   @return [ActiveRecord::Relation<Ticket>] user's tickets
 class User < ActiveRecord::Base
-  class Role
-    ADMIN = 'admin'.freeze
-    SUPPORT = 'support'.freeze
-    CUSTOMER = 'customer'.freeze
-  end
+  enum role: [ :admin, :support, :customer ]
 
   devise :database_authenticatable, :registerable, :validatable
 
@@ -28,10 +24,10 @@ class User < ActiveRecord::Base
   has_many :tickets, dependent: :destroy
 
   validates :auth_token, uniqueness: true
-  validates :role, :email, presence: true
-  validates :role, inclusion: { in: [Role::ADMIN, Role::CUSTOMER, Role::SUPPORT] }
+  validates :email, presence: true
 
   before_create :generate_auth_token!
+  before_validation :set_default_role
 
   def generate_auth_token!
     loop do
@@ -40,15 +36,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def admin?
-    role == Role::ADMIN
-  end
-
-  def customer?
-    role == Role::CUSTOMER
-  end
-
-  def support?
-    role == Role::SUPPORT
+  def set_default_role
+    return if role.present?
+    self.role = :customer
   end
 end

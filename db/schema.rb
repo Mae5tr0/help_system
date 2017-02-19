@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160924135047) do
     t.string   "encrypted_password", limit: 255, null: false
     t.string   "auth_token",         limit: 255, null: false
     t.string   "uid",                limit: 255, null: false
-    t.string   "role",               limit: 255
+    t.integer  "role",               limit: 4,   null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end

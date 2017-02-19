@@ -9,5 +9,5 @@
 User.create!(
   email: 'admin@example.com',
   password: 'very_secret_password',
-  role: User::Role::ADMIN
+  role: :admin
 )

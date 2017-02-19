@@ -8,7 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :auth_token, null: false
 
       t.string :uid, null: false
-      t.string :role, null: false
+      t.integer :role, null: false
 
       t.timestamps null: false
     end

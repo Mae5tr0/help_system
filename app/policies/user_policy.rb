@@ -20,7 +20,7 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       return scope.all if user.admin?
-      return scope.where.not(role: User::Role::ADMIN) if user.support?
+      return scope.where.not(role: 'admin') if user.support?
       scope.where(id: user.id)
     end
   end

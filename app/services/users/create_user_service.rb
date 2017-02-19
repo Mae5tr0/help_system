@@ -6,12 +6,9 @@ module Users
     end
 
     def perform
-      user = User.new(email: @email, password: @password)
-      user.role = User::Role::CUSTOMER
-
-      raise BadRequestError, :invalid_params, user.errors.full_messages unless user.valid?
-      user.save!
-      user
+      User.create!(email: @email, password: @password)
+    rescue ActiveRecord::RecordInvalid => e
+      raise BadRequestError, e.message
     end
   end
 end

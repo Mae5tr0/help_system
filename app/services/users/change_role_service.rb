@@ -6,9 +6,10 @@ module Users
     end
 
     def perform
-      @user.role = @role
-      unless @user.valid?
-        raise BadRequestError.new(:invalid_params, @user.errors.full_messages)
+      begin
+        @user.role = @role
+      rescue ArgumentError => e
+        raise BadRequestError.new(:invalid_params, e.message)
       end
       @user.save!
     end
