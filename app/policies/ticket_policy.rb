@@ -24,7 +24,7 @@ class TicketPolicy < ApplicationPolicy
     false
   end
 
-  def delete?
+  def destroy?
     user.admin?
   end
 

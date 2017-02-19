@@ -1,88 +1,187 @@
 describe Api::V1::TicketsController do
-  let(:admin) { create(:user, role: 'admin') }
-  let(:customer) { create(:user, role: 'customer') }
+  let(:admin) { create(:admin) }
+  let(:support) { create(:support) }
+  let(:customer) { create(:customer) }
+  let(:another_customer) { create(:customer) }
 
   context '#index' do
+    it 'format' do
+      create_list(:ticket, 2)
+      login(admin)
+
+      get :index
+
+      expect(json).to match_json_schema('tickets/index')
+    end
+
     it 'admin can view all tickets' do
-      4.times { create :ticket }
+      tickets = create_list(:ticket, 2)
       login(admin)
       get :index
 
-      expect(json_response.count).to eq(4)
+      expect(assigns(:tickets)).to contain_exactly(*tickets)
+    end
+
+    it 'support can view all tickets' do
+      tickets = create_list(:ticket, 2)
+      login(support)
+      get :index
+
+      expect(assigns(:tickets)).to contain_exactly(*tickets)
     end
 
     it 'customer can view only his tickets' do
-      2.times { create(:ticket, user: customer) }
-      2.times { create :ticket }
+      customer_tickets = create_list(:ticket, 2, user: customer)
+      create_list(:ticket, 2, user: another_customer)
 
       login(customer)
       get :index
 
-      expect(json_response.count).to eq(2)
+      expect(assigns(:tickets)).to contain_exactly(*customer_tickets)
     end
   end
 
   context '#show' do
-    before(:each) do
-      @ticket = create :ticket
-      login(admin)
-      get :show, id: @ticket.uid
+    let(:ticket) { create(:ticket, user: customer) }
+
+    it 'format' do
+      login(customer)
+
+      get :show, id: ticket.uid
+
+      expect(json).to match_json_schema('tickets/show')
     end
 
-    it 'returns the information about a reporter on a hash' do
-      expect(json_response[:title]).to eql @ticket.title
+    it 'error when try receive another customer ticket' do
+      login(customer)
+      another_customer_ticket = create(:ticket, user: another_customer)
+
+      expect do
+        get :show, id: another_customer_ticket.uid
+      end.to raise_error(UnauthorizedError)
+    end
+
+    it 'not found error' do
+      login(customer)
+
+      expect do
+        get :show, id: 'invalid id'
+      end.to raise_error(NotFoundError)
     end
   end
 
   context '#create' do
-    context 'when is successfully created' do
-      before(:each) do
-        @ticket_attributes = attributes_for :ticket
-        login(customer)
-        post :create, @ticket_attributes
-      end
-
-      it do
-        expect(response).to have_http_status(:no_content)
-        expect(Ticket.count).to eq(1)
-      end
+    before do
+      login(customer)
     end
 
-    context 'when is not created' do
-      it 'renders the json errors on whye the ticket could not be created' do
-        login(customer)
-        @invalid_ticket_attributes = { title: 'Smart TV', content: '' }
-        expect do
-          post :create, @invalid_ticket_attributes
-        end.to raise_error(BadRequestError)
-      end
+    let(:ticket_attributes) {
+      {
+        title: 'Title',
+        content: 'Content'
+      }
+    }
+
+    it 'success' do
+      post :create, ticket_attributes
+
+      expect(response).to have_http_status(:no_content)
+
+      ticket = Ticket.first
+      expect(ticket.title).to eq('Title')
+      expect(ticket.content).to eq('Content')
+      expect(ticket.user).to eq(customer)
+      expect(ticket.opened?).to be_truthy
+    end
+
+    it 'success' do
+      expect do
+        post :create, ticket_attributes.merge(title: nil, content: nil)
+      end.to raise_error(BadRequestError) { |error|
+        # TODO new validation error format
+        # expect(error.message_id).to be == :customer_not_confirmed
+      }
     end
   end
 
   context '#update' do
-    before(:each) do
-      @user = create :user
-      @ticket = create :ticket, user: @user, status: 'open', title: 'title'
-      login(admin)
+    let!(:opened_ticket) { create(:opened_ticket, user: customer) }
+    let!(:another_customer_ticket) { create(:opened_ticket, user: another_customer) }
+    let!(:closed_ticket) { create(:closed_ticket, user: customer) }
+
+    it 'customer can update his opened ticket' do
+      login(customer)
+      post :update, id: opened_ticket.uid, content: 'New content'
+
+      expect(response).to have_http_status(:no_content)
+
+      opened_ticket.reload
+      expect(opened_ticket.content).to eq('New content')
     end
 
-    it 'can only close ticket' do
-      patch :update, id: @ticket.uid, status: 'closed', title: 'mega'
+    it "customer can't update another customer ticket" do
+      login(customer)
 
-      should respond_with :no_content
-      expect(@ticket.reload.status).to eq('closed')
-      expect(@ticket.reload.title).to eq('title')
+      expect do
+        post :update, id: another_customer_ticket.uid, content: 'New content'
+      end.to raise_error(UnauthorizedError)
+    end
+
+    it "customer can't update closed ticket" do
+      login(customer)
+
+      expect do
+        post :update, id: closed_ticket.uid, content: 'New content'
+      end.to raise_error(UnauthorizedError)
+    end
+
+    it 'support can change ticket state' do
+      login(support)
+
+      post :update, id: opened_ticket.uid, status: 'closed'
+
+      expect(opened_ticket.reload.closed?).to be_truthy
     end
   end
 
   describe '#destroy' do
-    before(:each) do
-      @user = create :user
-      @ticket = create :ticket, user: @user
+    let!(:ticket) { create(:ticket, user: customer) }
+
+    it 'admin can delete ticket' do
       login(admin)
-      delete :destroy, id: @ticket.uid
+
+      delete :destroy, id: ticket.uid
+
+      expect(response).to have_http_status(:no_content)
+      expect(Ticket.exists?(uid: ticket.uid)).to be_falsey
     end
 
-    it { should respond_with :no_content }
+    it "support can't delete tickets" do
+      login(support)
+
+      expect do
+        delete :destroy, id: ticket.uid
+      end.to raise_error(UnauthorizedError)
+    end
+  end
+
+  describe '#search' do
+    let!(:ticket_1) { create(:ticket, title: 'Title 1', user: customer) }
+    let!(:ticket_2) { create(:ticket, title: 'Title 2', user: customer) }
+    let!(:ticket_3) { create(:ticket, title: 'Title 3', user: another_customer) }
+
+    it 'customer search through his tickets' do
+      login(customer)
+
+      post :search, query: 'title'
+      expect(assigns(:tickets)).to contain_exactly(ticket_1, ticket_2)
+    end
+
+    it 'support search through all tickets' do
+      login(support)
+
+      post :search, query: 'title'
+      expect(assigns(:tickets)).to contain_exactly(ticket_1, ticket_2, ticket_3)
+    end
   end
 end

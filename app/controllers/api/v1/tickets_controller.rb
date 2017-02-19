@@ -1,47 +1,57 @@
 module Api
   module V1
     class TicketsController < ApiController
+      after_action :verify_policy_scoped, only: [:index, :search]
+
       def index
         @tickets = policy_scope(Ticket)
-        render json: tickets
+        render json: @tickets
       end
 
       def show
         authorize ticket
-        render ticket
+
+        render json: ticket
       end
 
       def create
-        Tickets::CreateTicketService.new({}).perform
+        authorize Ticket
 
-        # ticket.user = current_user
-        # TODO validation errors
-        # fail BadRequestError.new(:invalid_params, ticket.errors) unless ticket.save
+        Tickets::CreateTicketService.new(
+          title: params[:title],
+          content: params[:content],
+          user: current_user
+        ).perform
 
         head :no_content
       end
 
       def update
-        # TODO: improve change status
         authorize ticket
-        # ticket.send()
-        # ticket.update(params.permit(:status))
-        # ticket.save!
 
-        Tickets::UpdateTicketService.new({}).perform
+        Tickets::UpdateTicketService.new(
+          title: params[:title],
+          content: params[:content],
+          status: params[:status],
+          ticket: ticket
+        ).perform
 
         head :no_content
       end
 
       def destroy
         authorize ticket
+
         ticket.destroy!
 
         head :no_content
       end
 
       def search
+        skip_authorization
+
         @tickets = policy_scope(Ticket).search(params[:query])
+
         render json: @tickets
       end
 

@@ -1,10 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "array": {
-    "items": {
-      "$ref": "../_ticket.json"
-    }
-  },
-  "additionalProperties": false
+  "type": "array",
+  "items": {
+    "$ref": "../_ticket.json"
+  }
 }
