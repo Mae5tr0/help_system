@@ -44,12 +44,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
-
-  # web tests
-  gem 'capybara'
-  gem 'cucumber-rails', require: false
-  gem 'email_spec'
-  gem 'selenium-webdriver'
 end
 
 group :development do
