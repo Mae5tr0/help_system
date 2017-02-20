@@ -1,5 +1,5 @@
 Helpdesk.Models.Profile = Backbone.Model.extend({
-  url: 'api/v1/users/profile',
+  url: 'api/v1/user/profile',
   authorize: true,
   defaults: {
     "email": "",

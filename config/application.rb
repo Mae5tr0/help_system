@@ -35,12 +35,15 @@ module Server
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Configure sensitive parameters which will be filtered from the log file.
+    config.filter_parameters += [:password]
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
     # TODO: development dummy
-    # config.exceptions_app = ExceptionsApp.new(Rails.public_path)
     # config.middleware.delete(ActionDispatch::DebugExceptions)
+    config.exceptions_app = ExceptionsApp.new(Rails.public_path)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true

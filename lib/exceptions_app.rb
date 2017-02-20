@@ -6,7 +6,7 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
   end
 
   def body
-    ActiveModelSerializers::SerializableResource.new(exception).to_json
+    ActiveModelSerializers::SerializableResource.new(exception).serializable_hash
   end
 
   private

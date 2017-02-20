@@ -7,8 +7,6 @@ module Users
 
     def perform
       User.create!(email: @email, password: @password)
-    rescue ActiveRecord::RecordInvalid => e
-      raise BadRequestError, e.message
     end
   end
 end

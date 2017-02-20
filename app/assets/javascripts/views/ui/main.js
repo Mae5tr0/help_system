@@ -21,7 +21,7 @@ Helpdesk.Views.Main = Backbone.View.extend({
 
   logout: function (ev) {
     ev.preventDefault();
-    var session = new Helpdesk.Models.UserLogout();
+    var session = new Helpdesk.Models.UserLogout({id: 1});
     session.destroy({
       success: function () {
         Helpdesk.storage.del('authToken');

@@ -9,7 +9,10 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template())
+    this.$el.html(this.template());
+    //TODO development
+    this.$el.find('#inputEmail').val('admin@example.com');
+    this.$el.find('#inputPassword').val('very_secret_password');
   },
 
   showErrorMessage: function (message) {
@@ -28,6 +31,11 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   errorLogin: function (model, response) {
+
+  },
+
+  errorSignIn: function (model, response) {
+
   },
 
   signIn: function (ev) {
@@ -36,7 +44,7 @@ Helpdesk.Views.Login = Backbone.View.extend({
     login.save(this.formData(),
       {
         success: this.successLogin,
-        error: this.errorLogin.bind(this)
+        error: this.errorSignIn.bind(this)
       }
     );
   },

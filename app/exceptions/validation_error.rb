@@ -19,3 +19,4 @@ class ValidationError < BadRequestError
     end
   end
 end
+ValidationError.register_as :bad_request

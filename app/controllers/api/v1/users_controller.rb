@@ -22,6 +22,11 @@ module Api
         head :no_content
       end
 
+      def profile
+        authorize current_user
+        render json: current_user
+      end
+
       private
 
       def user

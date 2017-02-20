@@ -1,6 +1,8 @@
 module Api
   module V1
     class RegistrationsController < Devise::RegistrationsController
+      include ErrorHandling
+
       def create
         @user = Users::CreateUserService.new(
           email: params[:email],

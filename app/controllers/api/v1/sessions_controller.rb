@@ -2,6 +2,7 @@ module Api
   module V1
     class SessionsController < Devise::SessionsController
       include Authenticable
+      include ErrorHandling
 
       def create
         @user = Users::AuthenticateService.new(
