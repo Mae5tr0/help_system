@@ -16,6 +16,7 @@ module Server
     config.autoload_paths += %W(
       #{config.root}/app/exceptions
       #{config.root}/app/serializers/concerns
+      #{config.root}/app/serializers/exceptions
       #{config.root}/app/controllers/api/concerns
       #{config.root}/lib
       #{config.root}/policies

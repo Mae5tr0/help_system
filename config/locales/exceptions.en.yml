@@ -1,7 +1,6 @@
 en:
   exceptions:
     bad_request_error:
-      offset_and_limit_should_be_an_integers: offset and limit should be integers
       invalid_params: Invalid params
     unauthorized_error:
       empty_token: Access token can't be blank
@@ -12,3 +11,5 @@ en:
       not_found: Record not found
     server_error:
       server_error: Internal server error
+    validation_error:
+      invalid_params: Invalid params

@@ -1,22 +1,15 @@
 class ExceptionsApp < ActionDispatch::PublicExceptions
   def call(env)
     @env = env
-    @request = ActionDispatch::Request.new(env)
 
     render(status, Mime::JSON, body)
   end
 
-  private
-
-  # TODO: fix
   def body
-    {
-      meta: {
-        error_type: exception.message_id,
-        error_message: exception.message
-      }
-    }
+    ActiveModelSerializers::SerializableResource.new(exception).to_json
   end
+
+  private
 
   def exception
     @env['action_dispatch.exception']

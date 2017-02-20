@@ -2,12 +2,12 @@
 class ApplicationError < StandardError
   include ActiveModel::Serialization
 
-  attr_reader :message_id
-  attr_reader :message
+  attr_reader :message_id, :message, :errors
 
-  def initialize(message_id, message = nil)
+  def initialize(message_id, message = nil, errors = [])
     @message_id = message_id.to_sym
     @message = message
+    @errors = errors
   end
 
   def message

@@ -9,7 +9,7 @@ module ErrorHandling
       raise NotFoundError, :not_fount
     end
     rescue_from ActiveRecord::RecordInvalid do |exception|
-      raise BadRequestError.new(:invalid_param, exception.message)
+      raise ValidationError.new(exception)
     end
   end
 end

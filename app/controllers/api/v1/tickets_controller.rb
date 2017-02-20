@@ -40,7 +40,7 @@ module Api
       end
 
       def destroy
-        authorize ticket
+         authorize ticket
 
         ticket.destroy!
 
