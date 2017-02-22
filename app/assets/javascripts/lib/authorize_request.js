@@ -13,7 +13,7 @@ Backbone.sync = function (method, model, options) {
       Helpdesk.trigger('authentication:logout');
       return;
     }
-    errorCallback.call(this, xhr, status, errorThrown)
+    errorCallback.call(this, xhr.responseJSON, status, errorThrown)
   };
   _sync.call(this, method, model, options);
 };

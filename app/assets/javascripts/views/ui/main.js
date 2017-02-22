@@ -1,6 +1,6 @@
 Helpdesk.Views.Main = Backbone.View.extend({
   template: JST['ui/main'],
-  el: 'body',
+  tagName: 'container',
 
   events: {
     'click .logout': 'logout',

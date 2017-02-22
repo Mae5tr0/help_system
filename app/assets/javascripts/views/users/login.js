@@ -1,7 +1,7 @@
 Helpdesk.Views.Login = Backbone.View.extend({
   template: JST['users/login'],
 
-  el: 'body',
+  tagName: 'container',
 
   events: {
     'click .sign-in': 'signIn',
@@ -10,12 +10,25 @@ Helpdesk.Views.Login = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template());
-    //TODO development
-    this.$el.find('#inputEmail').val('admin@example.com');
-    this.$el.find('#inputPassword').val('very_secret_password');
-  },
 
-  showErrorMessage: function (message) {
+    //TODO development
+    // this.$el.find('#inputEmail').val('admin@example.com');
+    // this.$el.find('#inputEmail').val('admin@example.com');
+    // this.$el.find('#inputPassword').val('invalid');
+
+    // admin
+    this.$el.find('#inputEmail').val('admin@example.com');
+    this.$el.find('#inputPassword').val('12345678');
+
+    // support
+    // this.$el.find('#inputEmail').val('support@example.com');
+    // this.$el.find('#inputPassword').val('12345678');
+
+    // customer
+    // this.$el.find('#inputEmail').val('customer@example.com');
+    // this.$el.find('#inputPassword').val('12345678');
+
+    this.$formErrorMessage = this.$el.find('.base-error')
   },
 
   formData: function() {
@@ -30,16 +43,24 @@ Helpdesk.Views.Login = Backbone.View.extend({
     Helpdesk.trigger('authentication:login');
   },
 
-  errorLogin: function (model, response) {
+  errorSignUp: function (model, response) {
+    response['errors'].forEach(function(error) {
+      console.log(error);
 
+      var $attributeFormGroup = this.$el.find('.' + error['attribute'] + '-group');
+      $attributeFormGroup.addClass('has-error');
+      $attributeFormGroup.find('.error-message').text(error['message']).show();
+    }.bind(this));
   },
 
   errorSignIn: function (model, response) {
-
+    this.$formErrorMessage.text(response['message']).show();
   },
 
   signIn: function (ev) {
     ev.preventDefault();
+    this.hideErrorMessage();
+
     var login = new Helpdesk.Models.UserLogin();
     login.save(this.formData(),
       {
@@ -51,12 +72,19 @@ Helpdesk.Views.Login = Backbone.View.extend({
 
   signUp: function (ev) {
     ev.preventDefault();
+    this.hideErrorMessage();
+
     var user = new Helpdesk.Models.User();
     user.save(this.formData(),
       {
         success: this.successLogin,
-        error: this.errorLogin.bind(this)
+        error: this.errorSignUp.bind(this)
       }
     );
+  },
+
+  hideErrorMessage: function () {
+    this.$formErrorMessage.text('').hide();
+    this.$el.find('.form-group .error-message').text('').hide();
   }
 });

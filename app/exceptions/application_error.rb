@@ -15,7 +15,7 @@ class ApplicationError < StandardError
   end
 
   def inspect
-    "#<#{self.class.name}: #{message}>"
+    "#<#{self.class.name}: #{message}, [#{@errors.map { |error| error[:message] }.join(', ')}]>"
   end
 
   def self.register_as(status)

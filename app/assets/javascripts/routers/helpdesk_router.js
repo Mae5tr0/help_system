@@ -1,5 +1,7 @@
 Helpdesk.Router = Backbone.Router.extend({
   initialize: function () {
+    this.currentView = null;
+    this.mainView = null;
   },
 
   routes: {
@@ -50,12 +52,21 @@ Helpdesk.Router = Backbone.Router.extend({
   },
 
   login: function () {
-    var view = new Helpdesk.Views.Login();
-    view.render();
+    this.currentView = new Helpdesk.Views.Login();
+    this.currentView.render();
+    $('body').html(this.currentView.el);
   },
 
   show: function (contentView) {
-    var view = new Helpdesk.Views.Main({model: contentView});
-    view.render();
+    if (this.currentView) {
+      this.currentView.remove();
+    }
+    if (this.mainView) {
+      this.mainView.remove();
+    }
+    this.currentView = contentView;
+    this.mainView = new Helpdesk.Views.Main({model: contentView});
+    this.mainView.render();
+    $('body').html(this.mainView.el);
   }
 });
