@@ -12,13 +12,9 @@ Helpdesk.Views.Login = Backbone.View.extend({
     this.$el.html(this.template());
 
     //TODO development
-    // this.$el.find('#inputEmail').val('admin@example.com');
-    // this.$el.find('#inputEmail').val('admin@example.com');
-    // this.$el.find('#inputPassword').val('invalid');
-
     // admin
-    this.$el.find('#inputEmail').val('admin@example.com');
-    this.$el.find('#inputPassword').val('12345678');
+    // this.$el.find('#inputEmail').val('admin@example.com');
+    // this.$el.find('#inputPassword').val('12345678');
 
     // support
     // this.$el.find('#inputEmail').val('support@example.com');
@@ -44,17 +40,15 @@ Helpdesk.Views.Login = Backbone.View.extend({
   },
 
   errorSignUp: function (model, response) {
-    response['errors'].forEach(function(error) {
-      console.log(error);
-
-      var $attributeFormGroup = this.$el.find('.' + error['attribute'] + '-group');
+    response.errors.forEach(function(error) {
+      var $attributeFormGroup = this.$el.find('.' + error.attribute + '-group');
       $attributeFormGroup.addClass('has-error');
-      $attributeFormGroup.find('.error-message').text(error['message']).show();
+      $attributeFormGroup.find('.error-message').text(error.message).show();
     }.bind(this));
   },
 
   errorSignIn: function (model, response) {
-    this.$formErrorMessage.text(response['message']).show();
+    this.$formErrorMessage.text(response.message).show();
   },
 
   signIn: function (ev) {

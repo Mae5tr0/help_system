@@ -12,21 +12,27 @@ Helpdesk.Views.TicketNew = Backbone.View.extend({
     this.$el.html(this.template());
   },
 
-  showError: function (errorMessage) {
+  showError: function (model, response) {
+    response.errors.forEach(function(error) {
+      console.log(error);
 
+      var $attributeFormGroup = this.$el.find('.' + error.attribute + '-group');
+      $attributeFormGroup.addClass('has-error');
+      $attributeFormGroup.find('.error-message').text(error.message).show();
+    }.bind(this));
   },
 
-  formData: function (form) {
-    var result = {};
-    _.each($(form).serializeArray(), function (obj) {
-      result[obj.name] = obj.value;
-    });
-    return result;
+  formData: function () {
+    return {
+      title: this.$el.find('#title').val(),
+      content: this.$el.find('#content').val()
+    };
   },
 
   save: function (ev) {
     ev.preventDefault();
     ev.stopPropagation();
+
     var collection = new Helpdesk.Collections.Tickets();
     collection.create(this.formData(ev.currentTarget), {
       success: function () {

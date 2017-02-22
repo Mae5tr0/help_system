@@ -18,9 +18,6 @@ Helpdesk.Views.UserEdit = Backbone.View.extend({
     });
   },
 
-  showError: function () {
-  },
-
   changeRole: function (ev) {
     ev.preventDefault();
     ev.stopPropagation();
@@ -28,8 +25,7 @@ Helpdesk.Views.UserEdit = Backbone.View.extend({
       patch: true,
       success: function () {
         Helpdesk.router.navigate('users', {trigger: true});
-      },
-      error: this.showError.bind(this)
+      }
     });
   }
 });
