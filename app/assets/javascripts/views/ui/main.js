@@ -1,6 +1,6 @@
 Helpdesk.Views.Main = Backbone.View.extend({
   template: JST['ui/main'],
-  tagName: 'container',
+  className: 'container',
 
   events: {
     'click .logout': 'logout',
@@ -16,7 +16,8 @@ Helpdesk.Views.Main = Backbone.View.extend({
     this.$el.html(this.template());
     this.model.setElement(this.$el.find('#content'));
     this.model.render();
-    this.$el.find('.nav-sidebar a' + '.' + this.currentLocation()).parent().addClass('active')
+    this.$el.find('.nav-sidebar a' + '.' + this.currentLocation()).parent().addClass('active');
+    return this;
   },
 
   logout: function (ev) {

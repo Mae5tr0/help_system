@@ -1,7 +1,6 @@
 Helpdesk.Views.Login = Backbone.View.extend({
   template: JST['users/login'],
-
-  tagName: 'container',
+  className: 'container',
 
   events: {
     'click .sign-in': 'signIn',
