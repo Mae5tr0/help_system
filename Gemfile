@@ -33,7 +33,7 @@ gem 'pundit'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'jasmine'
+  gem 'teaspoon-jasmine'
 end
 
 group :test do

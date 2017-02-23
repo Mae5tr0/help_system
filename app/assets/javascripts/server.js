@@ -4,7 +4,7 @@ window.Helpdesk = {
   Views: {},
   Libs: {},
   initialize: function() {
-    this.router = new Helpdesk.Router();
+    this.router = new Helpdesk.AppRouter();
     this.storage = new Helpdesk.Libs.Storage();
 
     Helpdesk.on('authentication:login', function () {
@@ -37,8 +37,3 @@ window.Helpdesk = {
     })
   }
 };
-
-$(document).ready(function(){
-  _.extend(Helpdesk, Backbone.Events);
-  Helpdesk.initialize();
-});

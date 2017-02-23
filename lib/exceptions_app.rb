@@ -2,6 +2,7 @@ class ExceptionsApp < ActionDispatch::PublicExceptions
   def call(env)
     @env = env
 
+    return super(env) unless exception.is_a?(ApplicationError)
     render(status, Mime::JSON, body)
   end
 

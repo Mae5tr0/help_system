@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Crossover test task</title>
+  <title>Help system</title>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag  'application', media: 'all' %>
 </head>
@@ -15,5 +15,7 @@
     <div class="loading">Loading...</div>
   </div>
   <%= javascript_include_tag 'application' %>
+
+  <%= yield %>
 </body>
 </html>

@@ -1,4 +1,4 @@
-Helpdesk.Router = Backbone.Router.extend({
+Helpdesk.AppRouter = Backbone.Router.extend({
   initialize: function () {
     this.currentView = null;
     this.mainView = null;
