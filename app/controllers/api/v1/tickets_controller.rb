@@ -4,7 +4,7 @@ module Api
       after_action :verify_policy_scoped, only: [:index, :search]
 
       def index
-        @tickets = policy_scope(Ticket)
+        @tickets = policy_scope(Ticket.preload(:user))
         render json: @tickets
       end
 

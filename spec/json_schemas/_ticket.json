@@ -15,13 +15,18 @@
     },
     "status": {
       "type": "string"
+    },
+    "user": {
+      "type": "object",
+      "$ref": "_user.json"
     }
   },
   "required": [
     "id",
     "title",
     "content",
-    "status"
+    "status",
+    "user"
   ],
   "additionalProperties": false
 }

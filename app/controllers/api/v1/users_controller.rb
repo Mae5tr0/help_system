@@ -23,7 +23,8 @@ module Api
       end
 
       def profile
-        authorize current_user
+        skip_authorization
+        raise UnauthorizedError, :invalid_token unless current_user.present?
         render json: current_user
       end
 

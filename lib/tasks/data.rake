@@ -1,13 +1,8 @@
 namespace :data do
   desc 'Generate fake data'
-  task fake: :environment do
-    create_list(:user, 30, tickets_count: 10)
+  task generate: :environment do
+    FactoryGirl.create_list(:customer, 10, tickets_count: 10, password: 'customer_pass')
 
-    create(:user, 2, role: :support)
-
-    create(:user, 1,
-           role: :admin,
-           email: 'admin@support.com',
-           password: 'super_secret')
+    FactoryGirl.create_list(:support, 2, password: 'support_pass')
   end
 end

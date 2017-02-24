@@ -8,6 +8,6 @@
 
 User.create!(
   email: 'admin@example.com',
-  password: 'very_secret_password',
+  password: 'admin_pass',
   role: :admin
 )

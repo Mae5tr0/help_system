@@ -17,10 +17,6 @@ class UserPolicy < ApplicationPolicy
     false
   end
 
-  def profile?
-    user.id == record.id
-  end
-
   class Scope < Scope
     def resolve
       return scope.all if user.admin?

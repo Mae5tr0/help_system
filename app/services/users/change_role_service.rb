@@ -7,7 +7,7 @@ module Users
 
     def perform
       begin
-        @user.role = @role
+        @user.role = @role.strip.downcase
       rescue ArgumentError => e
         raise BadRequestError.new(:invalid_params, e.message)
       end
