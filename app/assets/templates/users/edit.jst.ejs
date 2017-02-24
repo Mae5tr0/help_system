@@ -12,6 +12,7 @@
 			<option <%= user.get('role') == 'support' ? 'selected' : '' %> >Support</option>
 			<option <%= user.get('role') == 'customer' ? 'selected' : '' %> >Customer</option>
 		</select>
+		<p class="bg-danger error-message"></p>
 	</div>
 
 	<div class="actions">

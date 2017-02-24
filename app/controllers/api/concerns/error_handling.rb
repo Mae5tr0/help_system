@@ -2,7 +2,8 @@ module ErrorHandling
   extend ActiveSupport::Concern
 
   included do
-    rescue_from Pundit::NotAuthorizedError do
+    rescue_from Pundit::NotAuthorizedError do |error|
+      raise UnauthorizedError, :invalid_token if error.message == 'must be logged in'
       raise UnauthorizedError, :insufficient_privileges
     end
     rescue_from ActiveRecord::RecordNotFound do

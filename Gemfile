@@ -30,6 +30,10 @@ gem 'aasm'
 gem 'devise'
 gem 'pundit'
 
+# PDF generation
+gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'

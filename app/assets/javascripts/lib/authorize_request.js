@@ -8,7 +8,7 @@ Backbone.sync = function (method, model, options) {
   var errorCallback = options.error;
   options.error = function (xhr, status, errorThrown) {
     //logout after any unauthorized request
-    if (model.authorize && xhr.status == 401) {
+    if (model.authorize && xhr.status == 401 && xhr.responseJSON.message_id == 'invalid_token') {
       Helpdesk.storage.del('authToken');
       Helpdesk.trigger('authentication:logout');
       return;

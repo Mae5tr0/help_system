@@ -21,11 +21,16 @@ Helpdesk.Views.UserEdit = Backbone.View.extend({
   changeRole: function (ev) {
     ev.preventDefault();
     ev.stopPropagation();
+    this.$el.find('.error-message').text('').hide();
+
     this.model.save({role: this.$el.find('#roles option:selected').text()}, {
       patch: true,
       success: function () {
         Helpdesk.router.navigate('users', {trigger: true});
-      }
+      },
+      error: function (model, error) {
+        this.$el.find('.error-message').text(error.message).show();
+      }.bind(this)
     });
   }
 });

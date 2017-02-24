@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'application#index'
-  get '*path', to: 'application#index', constraints: ->(request) { request.format.html? }
-
+  get '*path', to: 'application#index', constraints: ->(request) do
+    request.format.html? && !(request.original_fullpath =~ /reports/)
+  end
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       devise_for :users
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get 'reports/tickets', to: 'reports#tickets'
 end
 #TODO fix
 # , constraints: { subdomain: 'api' }, path: '/'

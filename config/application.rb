@@ -54,5 +54,8 @@ module Server
       g.javascripts = false
       g.helper = false
     end
+
+    require 'pdfkit'
+    config.middleware.use PDFKit::Middleware, {}, :only => '/reports'
   end
 end
